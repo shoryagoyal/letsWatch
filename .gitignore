@@ -1,0 +1,6 @@
+.env
+.parcel-cache
+.prettierrc
+.prettierignore
+node_modules
+dist
