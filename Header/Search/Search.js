@@ -6,20 +6,23 @@ function SearchBar() {
     const [searchText, setSearchText] = useState('');
     const [searchedResult, setSearchedResult] = useState('');
     function searchCategoryChangedHandler(e) {
+        setSearchedResult('');
         setSearchCategory(e.target.value);
     }
 
     function searchTextHandler(e) {
+        setSearchedResult('');
         setSearchText(e.target.value);
     }
-
     useEffect(() => {
         // Debouncing
-        const timer = setTimeout(callSearchApi, 500);
+        const timer = setTimeout(() => {
+            callSearchApi();
+        }, 500);
         return () => {
             clearTimeout(timer);
         };
-    }, [searchText]);
+    }, [searchText, searchCategory]);
 
     async function callSearchApi() {
         const searchSuggestionData = await fetch(
