@@ -1,6 +1,11 @@
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import Header from './Header/Header';
+import Home from './Home/Home';
+import People from './People/People';
+import { RouterProvider } from 'react-router-dom';
 
 require('dotenv').config();
 
@@ -10,9 +15,27 @@ function Comp() {
     return (
         <div>
             <Header />
+            <Outlet />
         </div>
     );
 }
 
+const appRouter = createBrowserRouter([
+    {
+        path: '/',
+        element: <Comp />,
+        children: [
+            {
+                path: '/',
+                element: <Home />,
+            },
+            {
+                path: '/people/:peopleId',
+                element: <People />,
+            },
+        ],
+    },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Comp />);
+root.render(<RouterProvider router={appRouter} />);

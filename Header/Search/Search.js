@@ -14,6 +14,10 @@ function SearchBar() {
         setSearchedResult('');
         setSearchText(e.target.value);
     }
+
+    function clearSearchedResultHandler() {
+        setSearchedResult('');
+    }
     useEffect(() => {
         // Debouncing
         const timer = setTimeout(() => {
@@ -51,7 +55,15 @@ function SearchBar() {
             <div>
                 <input type="text" onChange={searchTextHandler} value={searchText}></input>
             </div>
-            {searchedResult === '' ? '' : <SearchedResults result={searchedResult} category={searchCategory} />}
+            {searchedResult === '' ? (
+                ''
+            ) : (
+                <SearchedResults
+                    result={searchedResult}
+                    category={searchCategory}
+                    clearSearchedResult={clearSearchedResultHandler}
+                />
+            )}
         </div>
     );
 }

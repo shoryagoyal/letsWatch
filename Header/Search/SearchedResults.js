@@ -22,6 +22,8 @@ function SearchedResults(props) {
                     profilePhoto={data.profile_path}
                     name={data.name}
                     department={data.known_for_department}
+                    peopleId={data.id}
+                    clearSearchedResult={props.clearSearchedResult}
                     key={data.id}
                 />
             );
