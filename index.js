@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 import Home from './Home/Home';
 import People from './People/People';
+import TvSeries from './TVSeries/TvSeries';
 import { RouterProvider } from 'react-router-dom';
 
 require('dotenv').config();
@@ -32,6 +33,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/people/:celebId',
                 element: <People />,
+            },
+            {
+                path: '/tv/:tvSeriesId',
+                element: <TvSeries />,
             },
         ],
     },

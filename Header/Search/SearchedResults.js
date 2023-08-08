@@ -13,6 +13,8 @@ function SearchedResults(props) {
                     poster={data.poster_path}
                     name={data.name}
                     releaseDate={data.first_air_date}
+                    tvSeriesId={data.id}
+                    clearSearchedResult={props.clearSearchedResult}
                     key={data.id}
                 />
             );
