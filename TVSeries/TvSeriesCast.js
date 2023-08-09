@@ -14,7 +14,7 @@ function TvSeriesCast() {
                 <div>The data is loading..</div>
             ) : (
                 cast.cast.map((castData) => (
-                    <Link to={`/people/${castData.id}`}>
+                    <Link to={`/people/${castData.id}`} key={castData.id}>
                         <img
                             src={
                                 castData.profile_path === null
