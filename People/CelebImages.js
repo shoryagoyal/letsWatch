@@ -25,7 +25,7 @@ function CelebImages() {
                 : celebImages.profiles.map((image) => (
                       <img
                           style={{ width: '40px' }}
-                          src={`${imagePrefixApi}${image.file_path.substring(1)}`}
+                          src={`${imagePrefixApi}${image.file_path}`}
                           key={image.file_path}
                       ></img>
                   ))}

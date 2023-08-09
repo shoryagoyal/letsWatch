@@ -11,7 +11,7 @@ function SearchCompanyResult(props) {
                     src={
                         companyLogo === null
                             ? 'https://cdn.landesa.org/wp-content/uploads/default-user-image.png'
-                            : `${imagePrefixApi}${companyLogo.substring(1)}`
+                            : `${imagePrefixApi}${companyLogo}`
                     }
                 ></img>
             </div>

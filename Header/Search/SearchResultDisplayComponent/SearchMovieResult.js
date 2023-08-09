@@ -11,7 +11,7 @@ function SearchMovieResult(props) {
                     src={
                         poster === null
                             ? 'https://cdn.landesa.org/wp-content/uploads/default-user-image.png'
-                            : `${imagePrefixApi}${poster.substring(1)}`
+                            : `${imagePrefixApi}${poster}`
                     }
                 ></img>
             </div>
