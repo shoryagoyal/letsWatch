@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import TvSeriesImages from './TvSeriesImages';
 import TvSeriesReview from './TvSeriesReview';
 import TvSeriesCast from './TvSeriesCast';
+import TvSeriesSimilar from './TvSeriesSimilar';
+import TvSeriesDetails from './TvSeriesDetails';
 
 function TvSeries() {
     const { tvSeriesId } = useParams();
@@ -12,9 +14,11 @@ function TvSeries() {
     }, [tvSeriesId]);
     return (
         <div>
-            {/* <TvSeriesImages /> */}
-            {/* <TvSeriesReview /> */}
-            {/* <TvSeriesCast /> */}
+            <TvSeriesDetails />
+            <TvSeriesImages />
+            <TvSeriesReview />
+            <TvSeriesCast />
+            <TvSeriesSimilar />
         </div>
     );
 }
