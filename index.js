@@ -8,6 +8,7 @@ import Home from './Home/Home';
 import People from './People/People';
 import TvSeries from './TVSeries/TvSeries';
 import TvSeriesAllImages from './TVSeries/TvSeriesAllImages';
+import TvSeriesDiscover from './Components/Discover/TvSeriesDiscover';
 
 require('dotenv').config();
 
@@ -34,6 +35,10 @@ const appRouter = createBrowserRouter([
             {
                 path: 'people/:celebId/',
                 element: <People />,
+            },
+            {
+                path: 'tv/discover',
+                element: <TvSeriesDiscover />,
             },
             {
                 path: 'tv/:tvSeriesId',
