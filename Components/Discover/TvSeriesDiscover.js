@@ -51,6 +51,7 @@ function TvSeriesDiscover() {
                             //     setPageNumber(index + 1);
                             // }}
                             onClick={() => changePageNumber(index + 1)}
+                            //onClick={changePageNumber(index + 1)}   // This code is giving TLE error {Find it out}
                         >
                             {index + 1}
                         </span>
