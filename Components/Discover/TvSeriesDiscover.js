@@ -24,20 +24,17 @@ function TvSeriesDiscover() {
     const tvSeriesList = useFetch(
         `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&page=${pageNumber}`,
     );
+    if (tvSeriesList === null) return <div>Data will be loading</div>;
     return (
         <div>
             <div>
-                {tvSeriesList === null ? (
-                    <div>Data will be loading</div>
-                ) : (
-                    <div style={{ display: 'flex' }}>
-                        {tvSeriesList.results.map((tvSeries) => (
-                            <div style={{ width: '100px' }}>
-                                <img style={{ width: '40px' }} src={useToGetImageSrc(tvSeries.poster_path)} />
-                            </div>
-                        ))}
-                    </div>
-                )}
+                <div style={{ display: 'flex' }}>
+                    {tvSeriesList.results.map((tvSeries) => (
+                        <div style={{ width: '100px' }}>
+                            <img style={{ width: '40px' }} src={useToGetImageSrc(tvSeries.poster_path)} />
+                        </div>
+                    ))}
+                </div>
             </div>
             <div>
                 <span onClick={prevButtonClickHandler}>Prev</span>
