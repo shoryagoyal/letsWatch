@@ -2,6 +2,7 @@ import useFetch from '../../hooks/useFetch';
 import { useState } from 'react';
 import useToGetImageSrc from '../../hooks/useToGetImageSrc';
 import { Link } from 'react-router-dom';
+import TvMoviesCard from './TvMoviesCard';
 
 function TvSeriesDiscover() {
     const [pageNumber, setPageNumber] = useState(1);
@@ -29,6 +30,7 @@ function TvSeriesDiscover() {
         setSortBy(e.target.value);
     }
     console.log(pageNumber);
+    // return <h1 className="text-5xl font-bold underline">Hello world!</h1>;
     if (tvSeriesList === null) return <div>Data will be loading</div>;
     return (
         <div>
@@ -44,22 +46,14 @@ function TvSeriesDiscover() {
                 </select>
             </div>
             <div>
-                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                <div className="flex flex-wrap justify-center">
                     {tvSeriesList.results.map((tvSeries) => (
-                        <Link
-                            to={`/tv/${tvSeries.id}`}
-                            key={tvSeries.id}
-                            style={{ border: '1px solid black', margin: '20px', padding: '10px' }}
-                        >
-                            <div style={{ width: '100px' }}>
-                                <img style={{ width: '40px' }} src={useToGetImageSrc(tvSeries.poster_path)} />
-                            </div>
-                            <div>
-                                <div>{tvSeries.name}</div>
-                                <div>Vote average: {tvSeries.vote_average}</div>
-                                <div>Vote count: {tvSeries.vote_count}</div>
-                            </div>
-                        </Link>
+                        <TvMoviesCard
+                            imageUrl={tvSeries.poster_path}
+                            id={tvSeries.id}
+                            vote_average={tvSeries.vote_average}
+                            vote_count={tvSeries.vote_count}
+                        />
                     ))}
                 </div>
             </div>
