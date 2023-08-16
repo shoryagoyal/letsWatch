@@ -3,8 +3,7 @@ import useToGetImageSrc from '../../hooks/useToGetImageSrc';
 
 function TvMoviesCard({ imageUrl, name, vote_average, vote_count, id }) {
     return (
-        <Link to={`/tv/${id}`} key={id}>
-            {/* <div className="max-w-xs rounded overflow-hidden shadow-lg m-4"> */}
+        <Link to={`/tv/${id}`}>
             <div className="max-w-xs rounded overflow-hidden shadow-lg transform transition duration-300 hover:shadow-xl hover:scale-105 m-4">
                 <img className="w-full h-96" src={useToGetImageSrc(imageUrl)} alt={name} />
                 <div className="px-6 py-4">

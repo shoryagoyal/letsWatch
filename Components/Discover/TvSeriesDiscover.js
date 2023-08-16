@@ -34,7 +34,7 @@ function TvSeriesDiscover() {
     if (tvSeriesList === null) return <div>Data will be loading</div>;
     return (
         <div>
-            <div>
+            <div className="absolute top-0 right-0">
                 <label>Sort by</label>
                 <select name="tvSort" id="tvSort" onChange={changeSortByHandler} value={sortBy}>
                     <option value="popularity.asc">Popularity ascending</option>
@@ -53,6 +53,7 @@ function TvSeriesDiscover() {
                             id={tvSeries.id}
                             vote_average={tvSeries.vote_average}
                             vote_count={tvSeries.vote_count}
+                            key={tvSeries.id}
                         />
                     ))}
                 </div>
