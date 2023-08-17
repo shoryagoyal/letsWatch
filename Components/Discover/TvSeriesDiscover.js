@@ -3,6 +3,7 @@ import { useState } from 'react';
 import useToGetImageSrc from '../../hooks/useToGetImageSrc';
 import { Link } from 'react-router-dom';
 import TvMoviesCard from './TvMoviesCard';
+import Pagination from '../Helpers/Pagination';
 
 function TvSeriesDiscover() {
     const [pageNumber, setPageNumber] = useState(1);
@@ -10,27 +11,14 @@ function TvSeriesDiscover() {
     const tvSeriesList = useFetch(
         `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&page=${pageNumber}&sort_by=${sortBy}`,
     );
-    function nextButtonClickHandler() {
-        setPageNumber((prevPage) => {
-            if (prevPage == 10) return 10;
-            return prevPage + 1;
-        });
-    }
-    function prevButtonClickHandler() {
-        setPageNumber((prevPage) => {
-            if (prevPage == 1) return 1;
-            return prevPage - 1;
-        });
-    }
-    function changePageNumber(page) {
-        console.log('clicked');
-        setPageNumber(page);
+
+    function pageNumberChangeHandler(currPageNumber) {
+        setPageNumber(currPageNumber);
     }
     function changeSortByHandler(e) {
         setSortBy(e.target.value);
     }
-    console.log(pageNumber);
-    // return <h1 className="text-5xl font-bold underline">Hello world!</h1>;
+
     if (tvSeriesList === null) return <div>Data will be loading</div>;
     return (
         <div>
@@ -53,30 +41,14 @@ function TvSeriesDiscover() {
                             id={tvSeries.id}
                             vote_average={tvSeries.vote_average}
                             vote_count={tvSeries.vote_count}
+                            name={tvSeries.name}
                             key={tvSeries.id}
                         />
                     ))}
                 </div>
             </div>
             <div>
-                <span onClick={prevButtonClickHandler}>Prev</span>
-                <span>
-                    {[...Array(10)].map((val, index) => (
-                        <span
-                            key={index}
-                            style={{ margin: '10px' }}
-                            // onClick={() => {
-                            //     console.log('Hy');
-                            //     setPageNumber(index + 1);
-                            // }}
-                            onClick={() => changePageNumber(index + 1)}
-                            //onClick={changePageNumber(index + 1)}   // This code is giving TLE error {Find it out}
-                        >
-                            {index + 1}
-                        </span>
-                    ))}
-                </span>
-                <span onClick={nextButtonClickHandler}>Next</span>
+                <Pagination totalPageNumber={10} sendPageNumberToParent={pageNumberChangeHandler} />;
             </div>
         </div>
     );
