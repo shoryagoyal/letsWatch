@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
 
-import Header from './Header/Header';
+import Header from './Components/Header/Header';
 import Home from './Home/Home';
 import People from './People/People';
 import TvSeries from './TVSeries/TvSeries';

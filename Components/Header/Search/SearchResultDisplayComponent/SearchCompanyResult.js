@@ -1,4 +1,4 @@
-import { imagePrefixApi } from '../../../constants';
+import { imagePrefixApi } from '../../../../constants';
 
 function SearchCompanyResult(props) {
     const { companyLogo, name } = props;

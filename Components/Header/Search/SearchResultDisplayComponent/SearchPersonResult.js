@@ -1,34 +1,34 @@
-import { imagePrefixApi } from '../../../constants';
+import { imagePrefixApi } from '../../../../constants';
 import { Link } from 'react-router-dom';
 
-function SearchTVResult(props) {
-    const { poster, name, releaseDate, tvSeriesId } = props;
+function SearchPersonResult(props) {
+    // known_for - Add feature later
+    const { profilePhoto, name, department } = props;
     return (
         <Link
-            to={`/tv/${tvSeriesId}`}
+            to={`/people/${props.peopleId}`}
             onClick={() => {
                 props.clearSearchedResult();
             }}
         >
-            <div style={{ border: '1px solid black', margin: '5px' }}>
+            <div style={{ border: '1px solid black', margin: '5px', width: '200px', display: 'flex' }}>
                 <div>
                     <img
                         style={{ width: '40px' }}
-                        alt="Movie poster"
+                        alt="Actor image"
                         src={
-                            poster === null
+                            profilePhoto === null
                                 ? 'https://cdn.landesa.org/wp-content/uploads/default-user-image.png'
-                                : `${imagePrefixApi}${poster}`
+                                : `${imagePrefixApi}${profilePhoto}`
                         }
                     ></img>
                 </div>
                 <div>
                     <div>{name}</div>
-                    <div>{releaseDate}</div>
+                    <div>{department}</div>
                 </div>
             </div>
         </Link>
     );
 }
-
-export default SearchTVResult;
+export default SearchPersonResult;

@@ -1,4 +1,4 @@
-import { imagePrefixApi } from '../../../constants';
+import { imagePrefixApi } from '../../../../constants';
 
 function SearchMovieResult(props) {
     const { poster, title, releaseDate } = props;
