@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { imagePrefixApi } from '../constants';
+import { imagePrefixApi } from '../../constants';
 
 function CelebTvSeries() {
     const { celebId } = useParams();

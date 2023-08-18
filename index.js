@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import Header from './Components/Header/Header';
 import Home from './Home/Home';
-import People from './People/People';
+import People from './Components/People/People';
 import TvSeries from './TVSeries/TvSeries';
 import TvSeriesAllImages from './TVSeries/TvSeriesAllImages';
 import TvSeriesDiscover from './Components/Discover/TvSeriesDiscover';

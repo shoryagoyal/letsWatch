@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { imagePrefixApi } from '../constants';
+import { imagePrefixApi } from '../../constants';
 import { useParams } from 'react-router-dom';
 
 function CelebImages() {
