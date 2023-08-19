@@ -6,10 +6,10 @@ import Pagination from '../Helpers/Pagination';
 function TvSeriesDiscover() {
     const [pageNumber, setPageNumber] = useState(1);
     const [sortBy, setSortBy] = useState('popularity.desc');
-    const tvSeriesList = useFetch(
-        `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&page=${pageNumber}&sort_by=${sortBy}`,
+    const moviesList = useFetch(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&page=${pageNumber}&sort_by=${sortBy}`,
     );
-
+    console.log(moviesList);
     function pageNumberChangeHandler(currPageNumber) {
         setPageNumber(currPageNumber);
     }
@@ -17,10 +17,10 @@ function TvSeriesDiscover() {
         setSortBy(e.target.value);
     }
 
-    if (tvSeriesList === null) return <div>Data will be loading</div>;
+    if (moviesList === null) return <div>Data will be loading</div>;
     return (
         <div>
-            <div className="absolute top-0 right-0">
+            <div>
                 <label>Sort by</label>
                 <select name="tvSort" id="tvSort" onChange={changeSortByHandler} value={sortBy}>
                     <option value="popularity.asc">Popularity ascending</option>
@@ -33,15 +33,15 @@ function TvSeriesDiscover() {
             </div>
             <div>
                 <div className="flex flex-wrap justify-center">
-                    {tvSeriesList.results.map((tvSeries) => (
+                    {moviesList.results.map((movie) => (
                         <TvMoviesCard
-                            imageUrl={tvSeries.poster_path}
-                            id={tvSeries.id}
-                            vote_average={tvSeries.vote_average}
-                            vote_count={tvSeries.vote_count}
-                            name={tvSeries.name}
-                            key={tvSeries.id}
-                            toLink={'/tv/' + tvSeries.id}
+                            imageUrl={movie.poster_path}
+                            id={movie.id}
+                            vote_average={movie.vote_average}
+                            vote_count={movie.vote_count}
+                            name={movie.title}
+                            key={movie.id}
+                            toLink={`/movie/${movie.id}`}
                         />
                     ))}
                 </div>
