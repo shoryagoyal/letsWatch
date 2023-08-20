@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
 
 import Header from './Components/Header/Header';
-import Home from './Home/Home';
+import Home from './Components/Home/Home';
 import People from './Components/People/People';
 import TvSeries from './TVSeries/TvSeries';
 import TvSeriesAllImages from './TVSeries/TvSeriesAllImages';
