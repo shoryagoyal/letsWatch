@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
-import { imagePrefixApi } from '../constants';
+import useFetch from '../../hooks/useFetch';
+import { imagePrefixApi } from '../../constants';
 
 function TvSeriesReview() {
     const { tvSeriesId } = useParams();

@@ -1,6 +1,6 @@
-import useFetch from '../hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 import { useParams } from 'react-router-dom';
-import useToGetImageSrc from '../hooks/useToGetImageSrc';
+import useToGetImageSrc from '../../hooks/useToGetImageSrc';
 
 function TvSeriesDetails() {
     const { tvSeriesId } = useParams();

@@ -1,6 +1,6 @@
-import useFetch from '../hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 import { useParams } from 'react-router-dom';
-import { imagePrefixApi } from '../constants';
+import { imagePrefixApi } from '../../constants';
 import { Link } from 'react-router-dom';
 
 function TvSeriesSimilar() {
