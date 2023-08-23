@@ -37,33 +37,44 @@ function SearchBar() {
     }
     return (
         <div>
-            <div>
-                <select
-                    name="searchCategory"
-                    id="searchCategory"
-                    onChange={searchCategoryChangedHandler}
-                    value={searchCategory}
-                >
-                    <option value="multi">All</option>
-                    <option value="tv">TV Episodes</option>
-                    <option value="person">Celebs</option>
-                    <option value="company">Companies</option>
-                    <option value="keyword">keywords</option>
-                    <option value="movie">Movie</option>
-                </select>
+            <div className="flex w-full">
+                <div className="flex justify-center">
+                    <select
+                        className="border border-black rounded-tl rounded-bl w-[100%]"
+                        name="searchCategory"
+                        id="searchCategory"
+                        onChange={searchCategoryChangedHandler}
+                        value={searchCategory}
+                    >
+                        <option value="multi">All</option>
+                        <option value="tv">TV Episodes</option>
+                        <option value="person">Celebs</option>
+                        <option value="company">Companies</option>
+                        <option value="keyword">keywords</option>
+                        <option value="movie">Movie</option>
+                    </select>
+                </div>
+                <div className="w-full">
+                    <input
+                        className="border border-black w-full rounded-tr rounded-br h-8 p-1"
+                        type="text"
+                        onChange={searchTextHandler}
+                        value={searchText}
+                        placeholder="Search Lets watch"
+                    ></input>
+                </div>
             </div>
             <div>
-                <input type="text" onChange={searchTextHandler} value={searchText}></input>
+                {searchedResult === '' ? (
+                    ''
+                ) : (
+                    <SearchedResults
+                        result={searchedResult}
+                        category={searchCategory}
+                        clearSearchedResult={clearSearchedResultHandler}
+                    />
+                )}
             </div>
-            {searchedResult === '' ? (
-                ''
-            ) : (
-                <SearchedResults
-                    result={searchedResult}
-                    category={searchCategory}
-                    clearSearchedResult={clearSearchedResultHandler}
-                />
-            )}
         </div>
     );
 }
