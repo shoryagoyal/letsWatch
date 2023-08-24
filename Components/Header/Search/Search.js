@@ -37,7 +37,7 @@ function SearchBar() {
     }
     return (
         <div>
-            <div className="flex w-full">
+            <div className="flex w-full h-8 text-black">
                 <div className="flex justify-center">
                     <select
                         className="border border-black rounded-tl rounded-bl w-[100%]"
@@ -56,7 +56,7 @@ function SearchBar() {
                 </div>
                 <div className="w-full">
                     <input
-                        className="border border-black w-full rounded-tr rounded-br h-8 p-1"
+                        className="border border-black w-full rounded-tr rounded-br h-8 py-1 px-2"
                         type="text"
                         onChange={searchTextHandler}
                         value={searchText}
