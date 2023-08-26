@@ -1,21 +1,26 @@
 import Logo from '../Logo/Logo';
 import { Link } from 'react-router-dom';
 
-function MenuContent() {
+function MenuContent(props) {
     const headingStyle = 'text-2xl font-bold';
     const linkStyle = 'my-2 hover:underline';
+
+    function makeMenuContentHidden() {
+        props.changeMenuVisibility(false);
+    }
+
     return (
-        <div className="bg-slate-900 text-white">
+        <div className="bg-slate-900 text-white flex-row" style={{ height: '100vh' }}>
             <div className="w-[70%] ml-[15%]">
-                <div className="flex justify-between">
+                <div className="flex justify-between py-8">
                     <div>
                         <Logo />
                     </div>
-                    <div>
+                    <div onClick={makeMenuContentHidden}>
                         <button className="bg-yellow-400 w-10 h-10 rounded-full text-black">&times;</button>
                     </div>
                 </div>
-                <div class="flex justify-between">
+                <div className="flex justify-between h-full">
                     <div>
                         <div>
                             <div className={headingStyle}>Movies</div>

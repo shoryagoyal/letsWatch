@@ -1,13 +1,10 @@
-import { useState } from 'react';
-
-function Menu() {
-    const [isMenuContentVisible, setIsMenuContentVisible] = useState(false);
-    console.log(isMenuContentVisible);
-    function menuContentVisibilityHandler() {
-        setIsMenuContentVisible(true);
+function Menu(props) {
+    function makeMenuContentVisible() {
+        props.changeMenuVisibility(true);
     }
+
     return (
-        <div className="flex hover:bg-slate-700 hover:rounded h-8 px-6 pt-1" onClick={menuContentVisibilityHandler}>
+        <div className="flex hover:bg-slate-700 hover:rounded h-8 px-6 pt-1" onClick={makeMenuContentVisible}>
             <div className="mt-1">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -4,7 +4,7 @@ import LogIn from './LogIn/LogIn';
 import Menu from './Menu/Menu';
 import WatchList from './WatchList/WatchList';
 
-function Header() {
+function Header(props) {
     return (
         <div className="text-base font-bold bg-black text-white">
             <div className="w-[85%] ml-[7%] flex justify-center pt-2">
@@ -12,7 +12,7 @@ function Header() {
                     <Logo />
                 </div>
                 <div className="mr-2">
-                    <Menu />
+                    <Menu changeMenuVisibility={props.changeMenuVisibility} />
                 </div>
                 <div className="w-[45%]">
                     <Search />
