@@ -5,7 +5,7 @@ import SearchKeywordResult from './SearchResultDisplayComponent/SearchKeywordRes
 import SearchMovieResult from './SearchResultDisplayComponent/SearchMovieResult';
 
 function SearchedResults(props) {
-    const { result, category } = props;
+    const { result, category, isSearchTextEmpty } = props;
     function findComponent(data) {
         if (category === 'tv') {
             return (
@@ -57,7 +57,10 @@ function SearchedResults(props) {
         }
         return <div>Hy</div>;
     }
-    if (result.results.length == 0) return <div>No result found</div>;
+    if (result.results.length == 0) {
+        if (isSearchTextEmpty) return <></>;
+        return <div>No result found</div>;
+    }
     return (
         <div>
             <div>Hy</div>

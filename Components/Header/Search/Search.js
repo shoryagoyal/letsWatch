@@ -72,6 +72,7 @@ function SearchBar() {
                         result={searchedResult}
                         category={searchCategory}
                         clearSearchedResult={clearSearchedResultHandler}
+                        isSearchTextEmpty={searchText.length === 0}
                     />
                 )}
             </div>
