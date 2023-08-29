@@ -14,6 +14,8 @@ function SearchedResults(props) {
                     name={data.name}
                     releaseDate={data.first_air_date}
                     tvSeriesId={data.id}
+                    voteAverage={data.vote_average}
+                    voteCount={data.vote_count}
                     clearSearchedResult={props.clearSearchedResult}
                     key={data.id}
                 />
@@ -62,9 +64,8 @@ function SearchedResults(props) {
         return <div>No result found</div>;
     }
     return (
-        <div>
-            <div>Hy</div>
-            {result.results.map((searchedData) => findComponent(searchedData))}
+        <div className="bg-slate-900 rounded mt-1">
+            {result.results.slice(0, 10).map((searchedData) => findComponent(searchedData))}
         </div>
     );
 }
