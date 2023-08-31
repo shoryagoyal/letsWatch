@@ -3,11 +3,11 @@ import { imagePrefixApi } from '../../../../constants';
 function SearchMovieResult(props) {
     const { poster, title, releaseDate } = props;
     return (
-        <div style={{ border: '1px solid black', margin: '5px', width: '200px', display: 'flex' }}>
-            <div>
+        <div className="flex p-2 border-b-2 border-white-500 hover:bg-slate-700">
+            <div className="w-[12%] flex justify-center items-center mr-[3%]">
                 <img
-                    style={{ width: '40px' }}
-                    alt="Actor image"
+                    className="h-[100%]"
+                    alt={`${title} image`}
                     src={
                         poster === null
                             ? 'https://cdn.landesa.org/wp-content/uploads/default-user-image.png'
@@ -16,8 +16,8 @@ function SearchMovieResult(props) {
                 ></img>
             </div>
             <div>
-                <div>{title}</div>
-                <div>{releaseDate}</div>
+                <div className="font-medium">{title}</div>
+                <div className="font-thin">{releaseDate}</div>
             </div>
         </div>
     );

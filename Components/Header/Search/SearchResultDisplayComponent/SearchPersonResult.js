@@ -11,11 +11,11 @@ function SearchPersonResult(props) {
                 props.clearSearchedResult();
             }}
         >
-            <div style={{ border: '1px solid black', margin: '5px', width: '200px', display: 'flex' }}>
-                <div>
+            <div className="flex p-2 border-b-2 border-white-500 hover:bg-slate-700">
+                <div className="w-[12%] flex justify-center items-center mr-[3%]">
                     <img
-                        style={{ width: '40px' }}
-                        alt="Actor image"
+                        className="h-[100%]"
+                        alt={`${name} image`}
                         src={
                             profilePhoto === null
                                 ? 'https://cdn.landesa.org/wp-content/uploads/default-user-image.png'
@@ -23,9 +23,9 @@ function SearchPersonResult(props) {
                         }
                     ></img>
                 </div>
-                <div>
-                    <div>{name}</div>
-                    <div>{department}</div>
+                <div className="w-[100%]">
+                    <div className="font-medium">{name}</div>
+                    <div className="font-thin">{department}</div>
                 </div>
             </div>
         </Link>
