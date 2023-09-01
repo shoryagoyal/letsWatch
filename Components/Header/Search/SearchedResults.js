@@ -34,7 +34,7 @@ function SearchedResults(props) {
         } else if (category === 'company') {
             return <SearchCompanyResult companyLogo={data.logo_path} name={data.name} key={data.id} />;
         } else if (category === 'keyword') {
-            return <SearchKeywordResult name={data.name} />;
+            return <SearchKeywordResult name={data.name} key={data.name} />;
         } else if (category === 'movie') {
             return (
                 <SearchMovieResult
@@ -49,7 +49,7 @@ function SearchedResults(props) {
             if (data.poster_path) {
                 console.log('must be a movie or ');
             } else if (data.logo_path) {
-                console.log('insidecompany');
+                console.log('inside company');
                 //return <SearchCompanyResult logo_path={data.logo_path} name={data.name} />;
             } else if (data.profile_path) {
                 console.log('inside person');
