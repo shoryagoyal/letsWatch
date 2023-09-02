@@ -3,10 +3,10 @@ import { imagePrefixApi } from '../../../../constants';
 function SearchCompanyResult(props) {
     const { companyLogo, name } = props;
     return (
-        <div style={{ border: '1px solid black', margin: '5px', width: '200px', display: 'flex' }}>
-            <div>
+        <div className="flex p-2 border-b-2 border-white-500 hover:bg-slate-700">
+            <div className="w-[12%] flex justify-center items-center mr-[3%]">
                 <img
-                    style={{ width: '40px' }}
+                    className="h-[100%]"
                     alt="Actor image"
                     src={
                         companyLogo === null
@@ -15,8 +15,8 @@ function SearchCompanyResult(props) {
                     }
                 ></img>
             </div>
-            <div>
-                <div>{name}</div>
+            <div className="w-[100%]">
+                <div className="font-medium">{name}</div>
             </div>
         </div>
     );
