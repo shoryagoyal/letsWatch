@@ -64,7 +64,7 @@ function SearchBar() {
                     ></input>
                 </div>
             </div>
-            <div>
+            <div className="relative">
                 {searchedResult === '' ? (
                     ''
                 ) : (

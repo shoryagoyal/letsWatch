@@ -64,7 +64,7 @@ function SearchedResults(props) {
         return <div>No result found</div>;
     }
     return (
-        <div className="bg-slate-900 rounded mt-1">
+        <div className="bg-slate-900 rounded mt-1 absolute w-[100%]">
             {result.results.slice(0, 10).map((searchedData) => findComponent(searchedData))}
         </div>
     );
