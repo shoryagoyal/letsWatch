@@ -13,6 +13,8 @@ import TvSeriesDiscover from './Components/Discover/TvSeriesDiscover';
 import MoviesDiscover from './Components/Discover/MoviesDiscover';
 import Movie from './Components/MovieDetailPage/Movie';
 import MenuContent from './Components/Header/Menu/MenuContent';
+import SignIn from './Components/Auth/SignIn';
+import CreateAccount from './Components/Auth/CreateAccount';
 
 require('dotenv').config();
 
@@ -50,6 +52,19 @@ const appRouter = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
+            },
+            {
+                path: 'user/',
+                children: [
+                    {
+                        path: 'login',
+                        element: <SignIn />,
+                    },
+                    {
+                        path: 'register',
+                        element: <CreateAccount />,
+                    },
+                ],
             },
             {
                 path: 'people/:celebId/',
