@@ -55,14 +55,16 @@ function SignIn() {
                             </div>
                             <button
                                 onClick={signInHandler}
-                                className="w-[100%] border-white-2 rounded my-5 bg-yellow-400 py-1"
+                                className="w-[100%] border-white-2 rounded my-5 bg-yellow-400 py-1 hover:brightness-90"
                             >
                                 Sign In
                             </button>
                         </form>
                         <div>New to IMDb?</div>
                         <Link to="/user/register">
-                            <button className="w-[100%] border-2 rounded my-3 py-1">Create your IMDb Account</button>
+                            <button className="w-[100%] border-2 rounded my-3 py-1 hover:brightness-90">
+                                Create your IMDb Account
+                            </button>
                         </Link>
                     </div>
                 </div>

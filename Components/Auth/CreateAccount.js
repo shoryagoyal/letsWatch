@@ -91,7 +91,7 @@ function CreateAccount() {
                             </div>
                             <button
                                 onClick={signInHandler}
-                                className="w-[100%] border-white-2 rounded my-5 bg-yellow-400 py-1"
+                                className="w-[100%] border-white-2 rounded my-5 bg-yellow-400 py-1 hover:brightness-90"
                             >
                                 Create your IMDb Account
                             </button>

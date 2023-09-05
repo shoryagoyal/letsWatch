@@ -5,6 +5,14 @@ function SearchBar() {
     const [searchCategory, setSearchCategory] = useState('multi');
     const [searchText, setSearchText] = useState('');
     const [searchedResult, setSearchedResult] = useState('');
+    const [searchFieldFocused, setSearchFieldFocused] = useState(false);
+
+    function searchFieldOnFocusHandler() {
+        setSearchFieldFocused(true);
+    }
+    function searchFieldOnBlurHandler() {
+        setSearchFieldFocused(false);
+    }
     function searchCategoryChangedHandler(e) {
         setSearchedResult('');
         setSearchCategory(e.target.value);
@@ -18,6 +26,7 @@ function SearchBar() {
     function clearSearchedResultHandler() {
         setSearchedResult('');
     }
+
     useEffect(() => {
         // Debouncing
         const timer = setTimeout(() => {
@@ -61,29 +70,25 @@ function SearchBar() {
                         onChange={searchTextHandler}
                         value={searchText}
                         placeholder="Search Lets watch"
+                        onFocus={searchFieldOnFocusHandler}
+                        onBlur={searchFieldOnBlurHandler}
                     ></input>
                 </div>
             </div>
             <div className="relative">
-                {searchedResult === '' ? (
-                    ''
-                ) : (
-                    <SearchedResults
-                        result={searchedResult}
-                        category={searchCategory}
-                        clearSearchedResult={clearSearchedResultHandler}
-                        isSearchTextEmpty={searchText.length === 0}
-                    />
-                )}
+                {searchedResult === ''
+                    ? ''
+                    : searchFieldFocused && (
+                          <SearchedResults
+                              result={searchedResult}
+                              category={searchCategory}
+                              clearSearchedResult={clearSearchedResultHandler}
+                              isSearchTextEmpty={searchText.length === 0}
+                          />
+                      )}
             </div>
         </div>
     );
 }
 
 export default SearchBar;
-// https://image.tmdb.org/t/p/original/
-// Companies - name, logo_path
-// TV - poster_path, name, first_air_date
-// Movie - poster_path, title, release_date
-// Person - profile_path, name, known_for_department, known_for (To display further details)
-// keyword - name
