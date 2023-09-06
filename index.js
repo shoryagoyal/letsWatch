@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
 import { useState } from 'react';
+import { Provider } from 'react-redux';
 
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
@@ -15,6 +16,7 @@ import Movie from './Components/MovieDetailPage/Movie';
 import MenuContent from './Components/Header/Menu/MenuContent';
 import SignIn from './Components/Auth/SignIn';
 import CreateAccount from './Components/Auth/CreateAccount';
+import store from './utils/store';
 
 require('dotenv').config();
 
@@ -29,18 +31,20 @@ function Comp() {
     }
 
     return (
-        <div>
-            {menuVisible ? (
-                <div>
-                    <MenuContent changeMenuVisibility={changeMenuVisibilityHandler} />
-                </div>
-            ) : (
-                <div>
-                    <Header changeMenuVisibility={changeMenuVisibilityHandler} />
-                    <Outlet />
-                </div>
-            )}
-        </div>
+        <Provider store={store}>
+            <div>
+                {menuVisible ? (
+                    <div>
+                        <MenuContent changeMenuVisibility={changeMenuVisibilityHandler} />
+                    </div>
+                ) : (
+                    <div>
+                        <Header changeMenuVisibility={changeMenuVisibilityHandler} />
+                        <Outlet />
+                    </div>
+                )}
+            </div>
+        </Provider>
     );
 }
 
