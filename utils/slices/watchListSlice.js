@@ -3,18 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 const watchListSlice = createSlice({
     name: 'watchList', // This is used to identify the slice
     initialState: {
-        itemsId: [],
+        watchListItem: {},
     },
     reducers: {
         addToWatchList: (state, action) => {
-            if (state.itemsId.indexOf(action.payload) == -1) {
-                state.itemsId.push(action.payload);
+            const { id, image, name, toLink, vote_average, vote_count } = action.payload;
+            if (!state.watchListItem.hasOwnProperty(id)) {
+                state.watchListItem[id] = {
+                    name: name,
+                    image: image,
+                    toLink: toLink,
+                    vote_average: vote_average,
+                    vote_count: vote_count,
+                };
             }
         },
         removeFromWatchList: (state, action) => {
-            const index = state.itemsId.indexOf(action.payload);
-            if (index != -1) {
-                state.itemsId.splice(index, 1);
+            if (state.watchListItem.hasOwnProperty(action.payload)) {
+                delete state.watchListItem[action.payload];
             }
         },
     },

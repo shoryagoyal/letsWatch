@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import useToGetImageSrc from '../../hooks/useToGetImageSrc';
 import { addToWatchList, removeFromWatchList } from '../../utils/slices/watchListSlice';
+import useCheckWhetherItemPresentInWatchList from '../../hooks/useCheckWhetherItemPresentInWatchList';
 
 function TvMoviesCard({ imageUrl, name, vote_average, vote_count, id, toLink }) {
     const dispatch = useDispatch();
-    const itemsId = useSelector((state) => state.watchList.itemsId);
 
     return (
         <div className="max-w-xs rounded overflow-hidden shadow-lg transform transition duration-300 hover:shadow-xl hover:scale-105 m-4">
@@ -32,10 +32,21 @@ function TvMoviesCard({ imageUrl, name, vote_average, vote_count, id, toLink }) 
                 </div>
             </div>
             <div className="px-6 py-4">
-                {itemsId.indexOf(id) == -1 ? (
+                {useCheckWhetherItemPresentInWatchList(id) ? (
                     <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full"
-                        onClick={() => dispatch(addToWatchList(id))}
+                        onClick={() =>
+                            dispatch(
+                                addToWatchList({
+                                    id: id,
+                                    image: imageUrl,
+                                    name: name,
+                                    toLink: toLink,
+                                    vote_average: vote_average,
+                                    vote_count: vote_count,
+                                }),
+                            )
+                        }
                     >
                         Add to Watchlist
                     </button>

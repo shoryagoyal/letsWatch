@@ -16,6 +16,7 @@ import Movie from './Components/MovieDetailPage/Movie';
 import MenuContent from './Components/Header/Menu/MenuContent';
 import SignIn from './Components/Auth/SignIn';
 import CreateAccount from './Components/Auth/CreateAccount';
+import WatchList from './Components/WatchList/WatchList';
 import store from './utils/store';
 
 require('dotenv').config();
@@ -40,7 +41,9 @@ function Comp() {
                 ) : (
                     <div>
                         <Header changeMenuVisibility={changeMenuVisibilityHandler} />
-                        <Outlet />
+                        <div className="px-[7%] bg-slate-900">
+                            <Outlet />
+                        </div>
                     </div>
                 )}
             </div>
@@ -67,6 +70,10 @@ const appRouter = createBrowserRouter([
                     {
                         path: 'register',
                         element: <CreateAccount />,
+                    },
+                    {
+                        path: 'watchList',
+                        element: <WatchList />,
                     },
                 ],
             },
