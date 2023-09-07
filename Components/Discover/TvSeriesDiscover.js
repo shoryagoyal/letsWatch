@@ -1,7 +1,8 @@
-import useFetch from '../../hooks/useFetch';
 import { useState } from 'react';
-import TvMoviesCard from './TvMoviesCard';
+
+import useFetch from '../../hooks/useFetch';
 import Pagination from '../Helpers/Pagination';
+import TvMovieCard from '../Helpers/TvMovieCard';
 
 function TvSeriesDiscover() {
     const [pageNumber, setPageNumber] = useState(1);
@@ -34,8 +35,8 @@ function TvSeriesDiscover() {
             <div>
                 <div className="flex flex-wrap justify-center">
                     {tvSeriesList.results.map((tvSeries) => (
-                        <TvMoviesCard
-                            imageUrl={tvSeries.poster_path}
+                        <TvMovieCard
+                            image={tvSeries.poster_path}
                             id={tvSeries.id}
                             vote_average={tvSeries.vote_average}
                             vote_count={tvSeries.vote_count}

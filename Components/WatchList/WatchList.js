@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import WatchListSingleItem from './WatchListSingleItem';
+import TvMovieCard from '../Helpers/TvMovieCard';
 
 function WatchList() {
     const watchListItem = useSelector((state) => state.watchList.watchListItem);
@@ -8,7 +8,15 @@ function WatchList() {
     return (
         <div className="flex flex-wrap">
             {Object.keys(watchListItem).map((item) => (
-                <WatchListSingleItem key={item} details={watchListItem[item]} id={item} />
+                <TvMovieCard
+                    key={item}
+                    image={watchListItem[item].image}
+                    vote_average={watchListItem[item].vote_average}
+                    vote_count={watchListItem[item].vote_count}
+                    name={watchListItem[item].title}
+                    toLink={watchListItem[item].toLink}
+                    id={item}
+                />
             ))}
         </div>
     );
