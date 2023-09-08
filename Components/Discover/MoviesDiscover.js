@@ -3,6 +3,7 @@ import { useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import Pagination from '../Helpers/Pagination';
 import TvMovieCard from '../Helpers/TvMovieCard';
+import TvMoviesCardShimmer from '../Shimmers/TvMovieCardShimmer';
 
 function TvSeriesDiscover() {
     const [pageNumber, setPageNumber] = useState(1);
@@ -18,7 +19,15 @@ function TvSeriesDiscover() {
         setSortBy(e.target.value);
     }
 
-    if (moviesList === null) return <div>Data will be loading</div>;
+    if (moviesList === null) {
+        return (
+            <div className="flex flex-wrap justify-center">
+                {[...Array(12)].map((_, index) => (
+                    <TvMoviesCardShimmer key={index} />
+                ))}
+            </div>
+        );
+    }
     return (
         <div>
             <div>

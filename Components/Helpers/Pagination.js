@@ -35,9 +35,9 @@ function Pagination({ totalPageNumber, sendPageNumberToParent }) {
             <div>
                 {[...Array(totalPageNumber)].map((val, index) => (
                     <button
-                        className={`px-3 py-2 border ${
-                            index + 1 === pageNumber ? 'bg-blue-500 text-white hover:bg-blue-700' : ''
-                        }`}
+                        className={`px-3 py-2 border text-white ${index == 0 ? 'rounded-bl rounded-tl' : ''} ${
+                            index == 9 ? 'rounded-br rounded-tr' : ''
+                        } ${index + 1 === pageNumber ? 'bg-blue-500 hover:bg-blue-700' : ''}`}
                         key={index}
                         onClick={() => {
                             specificPageButtonClickHandler(index + 1);

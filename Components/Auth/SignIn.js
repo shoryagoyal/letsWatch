@@ -23,7 +23,7 @@ function SignIn() {
                 <div className="flex justify-center my-2">
                     <Logo />
                 </div>
-                <div className="border-2 rounded-lg py-2">
+                <div className="border-2 rounded-lg py-2 bg-white mb-5">
                     <div className="mx-[8%]">
                         <div className="text-3xl my-2">Sign In</div>
                         <form>
