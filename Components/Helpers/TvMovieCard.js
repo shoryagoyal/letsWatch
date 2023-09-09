@@ -6,7 +6,6 @@ import useCheckWhetherItemPresentInWatchList from '../../hooks/useCheckWhetherIt
 import { addToWatchList, removeFromWatchList } from '../../utils/slices/watchListSlice';
 
 function TvMovieCard(props) {
-    console.log(props.details);
     const { name, image, vote_average, toLink, vote_count, id } = props;
     const dispatch = useDispatch();
 
