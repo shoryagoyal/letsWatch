@@ -5,7 +5,7 @@ import HomeSectionHeadings from './HomeSectionHeadings';
 
 function HomeWatchList() {
     const watchList = useSelector((store) => store.watchList.watchListItem);
-    console.log(watchList);
+
     return (
         <div>
             <div>
@@ -18,7 +18,7 @@ function HomeWatchList() {
                         image={watchList[item].image}
                         vote_average={watchList[item].vote_average}
                         vote_count={watchList[item].vote_count}
-                        name={watchList[item].title}
+                        name={watchList[item].name}
                         toLink={watchList[item].toLink}
                         id={item}
                     />

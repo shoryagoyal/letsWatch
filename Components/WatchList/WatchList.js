@@ -13,7 +13,7 @@ function WatchList() {
                     image={watchListItem[item].image}
                     vote_average={watchListItem[item].vote_average}
                     vote_count={watchListItem[item].vote_count}
-                    name={watchListItem[item].title}
+                    name={watchListItem[item].name}
                     toLink={watchListItem[item].toLink}
                     id={item}
                 />
