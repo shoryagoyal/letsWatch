@@ -4,26 +4,32 @@ import TvMovieCard from '../Helpers/TvMovieCard';
 import HomeSectionHeadings from './HomeSectionHeadings';
 
 function HomeWatchList() {
-    const watchList = useSelector((store) => store.watchList.watchListItem);
+    const watchListItem = useSelector((store) => store.watchList.watchListItem);
 
     return (
         <div>
             <div>
                 <HomeSectionHeadings name="From your WatchList" />
             </div>
-            <div className="flex flex-wrap">
-                {Object.keys(watchList).map((item) => (
-                    <TvMovieCard
-                        key={item}
-                        image={watchList[item].image}
-                        vote_average={watchList[item].vote_average}
-                        vote_count={watchList[item].vote_count}
-                        name={watchList[item].name}
-                        toLink={watchList[item].toLink}
-                        id={item}
-                    />
-                ))}
-            </div>
+            {Object.keys(watchListItem).length === 0 ? (
+                <div className="text-white">
+                    <div className="text-xl mb-5">Watch list is empty</div>
+                </div>
+            ) : (
+                <div className="flex flex-wrap">
+                    {Object.keys(watchListItem).map((item) => (
+                        <TvMovieCard
+                            key={item}
+                            image={watchListItem[item].image}
+                            vote_average={watchListItem[item].vote_average}
+                            vote_count={watchListItem[item].vote_count}
+                            name={watchListItem[item].name}
+                            toLink={watchListItem[item].toLink}
+                            id={item}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
