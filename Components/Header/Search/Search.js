@@ -46,7 +46,7 @@ function SearchBar() {
     }
     return (
         <div>
-            <div className="flex w-full h-8 text-black">
+            <div className="flex w-full h-8 text-black" data-testid="search">
                 <div className="flex justify-center">
                     <select
                         className="border border-black rounded-tl rounded-bl w-[100%]"
@@ -54,6 +54,7 @@ function SearchBar() {
                         id="searchCategory"
                         onChange={searchCategoryChangedHandler}
                         value={searchCategory}
+                        data-testid="searchCategories"
                     >
                         <option value="multi">All</option>
                         <option value="tv">TV Episodes</option>
@@ -72,6 +73,7 @@ function SearchBar() {
                         placeholder="Search Lets watch"
                         onFocus={searchFieldOnFocusHandler}
                         onBlur={searchFieldOnBlurHandler}
+                        data-testid="searchText"
                     ></input>
                 </div>
             </div>

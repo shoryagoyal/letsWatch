@@ -7,6 +7,7 @@ function Menu(props) {
         <div
             className="flex hover:bg-slate-700 hover:rounded h-8 px-6 pt-1 hover:cursor-pointer"
             onClick={makeMenuContentVisible}
+            data-testid="menu"
         >
             <div className="mt-1">
                 <svg
