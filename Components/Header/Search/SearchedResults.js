@@ -1,3 +1,7 @@
+// No results is not shown on searching
+
+import { useState, useEffect } from 'react';
+
 import SearchCompanyResult from './SearchResultDisplayComponent/SearchCompanyResult';
 import SearchPersonResult from './SearchResultDisplayComponent/SearchPersonResult';
 import SearchTVResult from './SearchResultDisplayComponent/SearchTVResult';
@@ -5,9 +9,30 @@ import SearchKeywordResult from './SearchResultDisplayComponent/SearchKeywordRes
 import SearchMovieResult from './SearchResultDisplayComponent/SearchMovieResult';
 
 function SearchedResults(props) {
-    const { result, category, isSearchTextEmpty } = props;
+    const { searchedCategory, searchedText, focus } = props;
+    const [searchedResult, setSearchedResult] = useState(null);
+
+    useEffect(() => {
+        // Debouncing
+        const timer = setTimeout(() => {
+            callSearchApi();
+        }, 500);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [searchedText, searchedCategory]);
+
+    async function callSearchApi() {
+        if (searchedText.length === 0) return;
+        const searchSuggestionData = await fetch(
+            `https://api.themoviedb.org/3/search/${searchedCategory}?language=en-US&page=1&query=${searchedText}&api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
+        );
+        const json = await searchSuggestionData.json();
+        setSearchedResult(json);
+    }
+
     function findComponent(data) {
-        if (category === 'tv') {
+        if (searchedCategory === 'tv') {
             return (
                 <SearchTVResult
                     poster={data.poster_path}
@@ -20,7 +45,7 @@ function SearchedResults(props) {
                     key={data.id}
                 />
             );
-        } else if (category === 'person') {
+        } else if (searchedCategory === 'person') {
             return (
                 <SearchPersonResult
                     profilePhoto={data.profile_path}
@@ -31,11 +56,11 @@ function SearchedResults(props) {
                     key={data.id}
                 />
             );
-        } else if (category === 'company') {
+        } else if (searchedCategory === 'company') {
             return <SearchCompanyResult companyLogo={data.logo_path} name={data.name} key={data.id} />;
-        } else if (category === 'keyword') {
+        } else if (searchedCategory === 'keyword') {
             return <SearchKeywordResult name={data.name} key={data.name} />;
-        } else if (category === 'movie') {
+        } else if (searchedCategory === 'movie') {
             return (
                 <SearchMovieResult
                     poster={data.poster_path}
@@ -59,13 +84,15 @@ function SearchedResults(props) {
         }
         return <div>Hy</div>;
     }
-    if (result.results.length == 0) {
-        if (isSearchTextEmpty) return <></>;
+
+    if (searchedResult === null) return <></>;
+    if (searchedResult.results.length == 0) {
+        if (searchedText.length) return <></>;
         return <div>No result found</div>;
     }
     return (
-        <div className="bg-slate-900 rounded mt-1 absolute w-[100%]">
-            {result.results.slice(0, 10).map((searchedData) => findComponent(searchedData))}
+        <div className={`bg-slate-900 rounded mt-1 absolute w-[100%]`}>
+            {searchedResult.results.slice(0, 10).map((searchedData) => findComponent(searchedData))}
         </div>
     );
 }

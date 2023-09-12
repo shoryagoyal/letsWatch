@@ -4,12 +4,7 @@ import { Link } from 'react-router-dom';
 function SearchTVResult(props) {
     const { poster, name, releaseDate, tvSeriesId, voteCount, voteAverage } = props;
     return (
-        <Link
-            to={`/tv/${tvSeriesId}`}
-            onClick={() => {
-                props.clearSearchedResult();
-            }}
-        >
+        <Link to={`/tv/${tvSeriesId}`}>
             <div className="flex p-2 border-b-2 border-white-500 hover:bg-slate-700">
                 <div className="w-[12%] flex justify-center items-center mr-[3%]">
                     <img

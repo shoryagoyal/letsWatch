@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SearchedResults from './SearchedResults';
 
 function SearchBar() {
     const [searchCategory, setSearchCategory] = useState('multi');
     const [searchText, setSearchText] = useState('');
-    const [searchedResult, setSearchedResult] = useState('');
     const [searchFieldFocused, setSearchFieldFocused] = useState(false);
 
     function searchFieldOnFocusHandler() {
@@ -14,35 +13,11 @@ function SearchBar() {
         setSearchFieldFocused(false);
     }
     function searchCategoryChangedHandler(e) {
-        setSearchedResult('');
         setSearchCategory(e.target.value);
     }
 
     function searchTextHandler(e) {
-        setSearchedResult('');
         setSearchText(e.target.value);
-    }
-
-    function clearSearchedResultHandler() {
-        setSearchedResult('');
-    }
-
-    useEffect(() => {
-        // Debouncing
-        const timer = setTimeout(() => {
-            callSearchApi();
-        }, 500);
-        return () => {
-            clearTimeout(timer);
-        };
-    }, [searchText, searchCategory]);
-
-    async function callSearchApi() {
-        const searchSuggestionData = await fetch(
-            `https://api.themoviedb.org/3/search/${searchCategory}?language=en-US&page=1&query=${searchText}&api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
-        );
-        const json = await searchSuggestionData.json();
-        setSearchedResult(json);
     }
     return (
         <div>
@@ -78,16 +53,11 @@ function SearchBar() {
                 </div>
             </div>
             <div className="relative">
-                {searchedResult === ''
-                    ? ''
-                    : searchFieldFocused && (
-                          <SearchedResults
-                              result={searchedResult}
-                              category={searchCategory}
-                              clearSearchedResult={clearSearchedResultHandler}
-                              isSearchTextEmpty={searchText.length === 0}
-                          />
-                      )}
+                <SearchedResults
+                    searchedCategory={searchCategory}
+                    searchedText={searchText}
+                    focus={searchFieldFocused}
+                />
             </div>
         </div>
     );
