@@ -13,7 +13,7 @@ function UpcomingMovies() {
             <div>
                 <HomeSectionHeader name="Upcoming movies" />
 
-                <div className="flex flex-wrap justify-center">
+                <div className="flex flex-wrap justify-center" data-testid="upcomingMovieShimmer">
                     {[...Array(12)].map((_, index) => (
                         <TvMoviesCardShimmer key={index} />
                     ))}
@@ -24,7 +24,7 @@ function UpcomingMovies() {
     return (
         <div>
             <HomeSectionHeader name="Upcoming movies" />
-            <div className="flex flex-wrap justify-center">
+            <div className="flex flex-wrap justify-center" data-testid="upcomingMovies">
                 {upcomingMovieData.results.map((movie) => (
                     <TvMovieCard
                         image={movie.poster_path}

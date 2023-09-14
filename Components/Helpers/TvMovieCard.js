@@ -44,6 +44,7 @@ function TvMovieCard(props) {
                     {useCheckWhetherItemPresentInWatchList(id) ? (
                         <button
                             className="w-[100%] rounded my-1 bg-slate-700 hover:bg-blue-950 px-2"
+                            data-testid="addToWatchListButton"
                             onClick={() =>
                                 dispatch(
                                     addToWatchList({
@@ -63,6 +64,7 @@ function TvMovieCard(props) {
                         <button
                             className="w-[100%] rounded my-1 bg-slate-700 hover:bg-blue-950 px-2"
                             onClick={() => dispatch(removeFromWatchList(id))}
+                            data-testid="removeFromWatchListButton"
                         >
                             Remove from WatchList
                         </button>
