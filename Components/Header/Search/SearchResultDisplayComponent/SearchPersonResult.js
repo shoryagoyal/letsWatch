@@ -5,12 +5,7 @@ function SearchPersonResult(props) {
     // known_for - Add feature later
     const { profilePhoto, name, department } = props;
     return (
-        <Link
-            to={`/people/${props.peopleId}`}
-            onClick={() => {
-                props.clearSearchedResult();
-            }}
-        >
+        <Link to={`/people/${props.peopleId}`}>
             <div className="flex p-2 border-b-2 border-white-500 hover:bg-slate-700">
                 <div className="w-[12%] flex justify-center items-center mr-[3%]">
                     <img

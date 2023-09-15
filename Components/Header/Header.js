@@ -15,7 +15,10 @@ function Header(props) {
                     <Menu changeMenuVisibility={props.changeMenuVisibility} />
                 </div>
                 <div className="w-[45%]">
-                    <Search />
+                    <Search
+                        searchedResultsShown={props.searchedResultsShown}
+                        setSearchedResultsShown={props.setSearchedResultsShown}
+                    />
                 </div>
                 <div className="ml-2">
                     <WatchList />

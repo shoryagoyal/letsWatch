@@ -1,17 +1,10 @@
 import { useState } from 'react';
 import SearchedResults from './SearchedResults';
 
-function SearchBar() {
+function SearchBar(props) {
     const [searchCategory, setSearchCategory] = useState('multi');
     const [searchText, setSearchText] = useState('');
-    const [searchFieldFocused, setSearchFieldFocused] = useState(false);
 
-    function searchFieldOnFocusHandler() {
-        setSearchFieldFocused(true);
-    }
-    function searchFieldOnBlurHandler() {
-        setSearchFieldFocused(false);
-    }
     function searchCategoryChangedHandler(e) {
         setSearchCategory(e.target.value);
     }
@@ -19,6 +12,7 @@ function SearchBar() {
     function searchTextHandler(e) {
         setSearchText(e.target.value);
     }
+
     return (
         <div>
             <div className="flex w-full h-8 text-black" data-testid="search">
@@ -46,8 +40,10 @@ function SearchBar() {
                         onChange={searchTextHandler}
                         value={searchText}
                         placeholder="Search Lets watch"
-                        onFocus={searchFieldOnFocusHandler}
-                        onBlur={searchFieldOnBlurHandler}
+                        onClick={(e) => {
+                            props.setSearchedResultsShown(true);
+                            e.stopPropagation();
+                        }}
                         data-testid="searchText"
                     ></input>
                 </div>
@@ -56,7 +52,8 @@ function SearchBar() {
                 <SearchedResults
                     searchedCategory={searchCategory}
                     searchedText={searchText}
-                    focus={searchFieldFocused}
+                    searchedResultsShown={props.searchedResultsShown}
+                    setSearchedResultsShown={props.setSearchedResultsShown}
                 />
             </div>
         </div>

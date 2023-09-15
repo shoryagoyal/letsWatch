@@ -21,10 +21,9 @@ import store from './utils/store';
 
 require('dotenv').config();
 
-//console.log(process.env.REACT_APP_MOVIE_DB_API_KEY);
-
 function Comp() {
     const [menuVisible, setIsMenuVisible] = useState(false);
+    const [isSearchedResultsShown, setIsSearchedResultsShown] = useState(true);
 
     function changeMenuVisibilityHandler(isVisible) {
         if (isVisible) setIsMenuVisible(true);
@@ -39,8 +38,16 @@ function Comp() {
                         <MenuContent changeMenuVisibility={changeMenuVisibilityHandler} />
                     </div>
                 ) : (
-                    <div>
-                        <Header changeMenuVisibility={changeMenuVisibilityHandler} />
+                    <div
+                        onClick={() => {
+                            setIsSearchedResultsShown(false);
+                        }}
+                    >
+                        <Header
+                            changeMenuVisibility={changeMenuVisibilityHandler}
+                            searchedResultsShown={isSearchedResultsShown}
+                            setSearchedResultsShown={setIsSearchedResultsShown}
+                        />
                         <div className="px-[7%] bg-slate-900">
                             <Outlet />
                         </div>

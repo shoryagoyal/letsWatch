@@ -1,5 +1,3 @@
-// No results is not shown on searching
-
 import { useState, useEffect } from 'react';
 
 import SearchCompanyResult from './SearchResultDisplayComponent/SearchCompanyResult';
@@ -9,7 +7,7 @@ import SearchKeywordResult from './SearchResultDisplayComponent/SearchKeywordRes
 import SearchMovieResult from './SearchResultDisplayComponent/SearchMovieResult';
 
 function SearchedResults(props) {
-    const { searchedCategory, searchedText, focus } = props;
+    const { searchedCategory, searchedText, setSearchedResultsShown, searchedResultsShown } = props;
     const [searchedResult, setSearchedResult] = useState(null);
 
     useEffect(() => {
@@ -41,7 +39,6 @@ function SearchedResults(props) {
                     tvSeriesId={data.id}
                     voteAverage={data.vote_average}
                     voteCount={data.vote_count}
-                    clearSearchedResult={props.clearSearchedResult}
                     key={data.id}
                 />
             );
@@ -52,7 +49,6 @@ function SearchedResults(props) {
                     name={data.name}
                     department={data.known_for_department}
                     peopleId={data.id}
-                    clearSearchedResult={props.clearSearchedResult}
                     key={data.id}
                 />
             );
@@ -87,13 +83,22 @@ function SearchedResults(props) {
 
     if (searchedResult === null) return <></>;
     if (searchedResult.results.length == 0) {
-        if (searchedText.length) return <></>;
-        return <div>No result found</div>;
+        if (searchedText.length === 0) return <></>;
+        return <div className="bg-slate-950 rounded mt-1 absolute w-[100%] p-2">No result found</div>;
     }
-    return (
-        <div className={`bg-slate-900 rounded mt-1 absolute w-[100%]`}>
+    return searchedResultsShown ? (
+        <div
+            className="bg-slate-950 rounded mt-1 absolute w-[100%]"
+            onClick={(e) => {
+                // do not close the search result if anything inside search result content is clicked
+                e.stopPropagation();
+                setSearchedResultsShown(false);
+            }}
+        >
             {searchedResult.results.slice(0, 10).map((searchedData) => findComponent(searchedData))}
         </div>
+    ) : (
+        <></>
     );
 }
 
