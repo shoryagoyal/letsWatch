@@ -18,7 +18,9 @@ function SearchTVResult(props) {
                     ></img>
                 </div>
                 <div className="w-[100%]">
-                    <div className="font-medium">{name}</div>
+                    <div className="font-medium" data-testid="tvSeriesSearchedResults_name">
+                        {name}
+                    </div>
                     <div className="font-thin">{releaseDate}</div>
                     <div className="flex justify-between font-thin">
                         <div className="flex justify-center items-center">

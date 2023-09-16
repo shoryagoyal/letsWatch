@@ -94,6 +94,7 @@ function SearchedResults(props) {
                 e.stopPropagation();
                 setSearchedResultsShown(false);
             }}
+            data-testid="searchedResults"
         >
             {searchedResult.results.slice(0, 10).map((searchedData) => findComponent(searchedData))}
         </div>

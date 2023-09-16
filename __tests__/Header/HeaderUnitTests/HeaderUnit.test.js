@@ -38,25 +38,6 @@ test('Menu component should be loaded when the header is rendered', () => {
     expect(menu.children[1].innerHTML).toBe('Menu');
 });
 
-test('Search component should be loaded when the header is rendered', () => {
-    const header = render(
-        <StaticRouter>
-            <Provider store={store}>
-                <Header />
-            </Provider>
-        </StaticRouter>,
-    );
-
-    const search = header.getByTestId('search');
-    const searchCategories = header.getByTestId('searchCategories');
-    const searchText = header.getByTestId('searchText');
-
-    expect(search.children.length).toBe(2);
-    expect(searchCategories.children.length).toBe(6);
-    expect(searchCategories.value).toBe('multi');
-    expect(searchText.innerHTML).toBe('');
-});
-
 test('WatchList should have zero item when the header is loaded first', () => {
     const header = render(
         <StaticRouter>

@@ -1,11 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
-import { useState } from 'react';
-import { Provider } from 'react-redux';
 
-import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import People from './Components/People/People';
 import TvSeries from './Components/TVSeries/TvSeries';
@@ -13,55 +9,17 @@ import TvSeriesAllImages from './Components/TVSeries/TvSeriesAllImages';
 import TvSeriesDiscover from './Components/Discover/TvSeriesDiscover';
 import MoviesDiscover from './Components/Discover/MoviesDiscover';
 import Movie from './Components/MovieDetailPage/Movie';
-import MenuContent from './Components/Header/Menu/MenuContent';
 import SignIn from './Components/Auth/SignIn';
 import CreateAccount from './Components/Auth/CreateAccount';
 import WatchList from './Components/WatchList/WatchList';
-import store from './utils/store';
+import App from './App';
 
 require('dotenv').config();
-
-function Comp() {
-    const [menuVisible, setIsMenuVisible] = useState(false);
-    const [isSearchedResultsShown, setIsSearchedResultsShown] = useState(true);
-
-    function changeMenuVisibilityHandler(isVisible) {
-        if (isVisible) setIsMenuVisible(true);
-        else setIsMenuVisible(false);
-    }
-
-    return (
-        <Provider store={store}>
-            <div>
-                {menuVisible ? (
-                    <div>
-                        <MenuContent changeMenuVisibility={changeMenuVisibilityHandler} />
-                    </div>
-                ) : (
-                    <div
-                        onClick={() => {
-                            setIsSearchedResultsShown(false);
-                        }}
-                    >
-                        <Header
-                            changeMenuVisibility={changeMenuVisibilityHandler}
-                            searchedResultsShown={isSearchedResultsShown}
-                            setSearchedResultsShown={setIsSearchedResultsShown}
-                        />
-                        <div className="px-[7%] bg-slate-900">
-                            <Outlet />
-                        </div>
-                    </div>
-                )}
-            </div>
-        </Provider>
-    );
-}
 
 const appRouter = createBrowserRouter([
     {
         path: '/',
-        element: <Comp />,
+        element: <App />,
         children: [
             {
                 path: '/',
