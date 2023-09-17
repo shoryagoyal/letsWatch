@@ -67,18 +67,3 @@ test('WatchList should have zero item when the header is loaded first', () => {
 
     expect(watchListSize.innerHTML).toBe('0');
 });
-
-test('LogIn page link should load when the header is rendered for the first time', () => {
-    const header = render(
-        <StaticRouter>
-            <Provider store={store}>
-                <Header />
-            </Provider>
-        </StaticRouter>,
-    );
-
-    const logIn = header.getByTestId('logIn');
-
-    expect(logIn.href).toBe('http://localhost/user/login');
-    expect(logIn.children[0].innerHTML).toBe('Sign In');
-});

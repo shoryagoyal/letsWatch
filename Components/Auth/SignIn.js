@@ -19,7 +19,7 @@ function SignIn() {
 
     return (
         <div className="flex justify-center">
-            <div className="w-[25%]">
+            <div className="w-[25%]" data-testid="signInPage">
                 <div className="flex justify-center my-2">
                     <Logo />
                 </div>
