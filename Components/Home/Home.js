@@ -3,7 +3,7 @@ import UpcomingMovies from './UpcomingMovies';
 
 function Home() {
     return (
-        <div>
+        <div data-testid="home">
             <div>Home</div>
             <HomeWatchList />
             <UpcomingMovies />

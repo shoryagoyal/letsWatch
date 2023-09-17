@@ -7,7 +7,7 @@ function WatchList() {
     const watchListItem = useSelector((state) => state.watchList.watchListItem);
 
     return (
-        <div>
+        <div data-testid="watchListPage">
             <div className="text-white text-2xl font-bold pt-10 pb-5">My watchList</div>
             {Object.keys(watchListItem).length === 0 ? (
                 <div className="text-white">

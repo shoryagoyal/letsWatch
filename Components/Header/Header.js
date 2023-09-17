@@ -7,7 +7,7 @@ import WatchList from './WatchList/WatchList';
 function Header(props) {
     return (
         <div className="text-base font-bold bg-black text-white">
-            <div className="w-[85%] ml-[7%] flex justify-center py-3">
+            <div className="w-[85%] ml-[7%] flex justify-center py-3" data-testid="headerContainer">
                 <div className="w-[7%]">
                     <Logo />
                 </div>

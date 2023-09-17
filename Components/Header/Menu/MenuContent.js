@@ -10,7 +10,11 @@ function MenuContent(props) {
     }
 
     return (
-        <div className="bg-slate-900 text-white flex-row" style={{ height: '100vh' }}>
+        <div
+            className="bg-slate-900 text-white flex-row"
+            style={{ height: '100vh' }}
+            data-testid="menuContentContainer"
+        >
             <div className="w-[70%] ml-[15%]">
                 <div className="flex justify-between py-8">
                     <div>
