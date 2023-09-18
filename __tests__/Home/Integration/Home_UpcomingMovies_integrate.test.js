@@ -5,7 +5,7 @@ import { StaticRouter } from 'react-router-dom/server';
 import WatchListHeader from '../../../Components/Header/WatchList/WatchList';
 import UpcomingMovies from '../../../Components/Home/UpcomingMovies';
 import store from '../../../utils/store';
-import { HOME_PAGE_UPCOMING_MOVIES } from '../../../mocks/fetch_mock_data';
+import { HOME_PAGE_UPCOMING_MOVIES } from '../../../mocks/fetchAPI_data/Home/UpcomingMovies';
 
 global.fetch = jest.fn(() => {
     return Promise.resolve({

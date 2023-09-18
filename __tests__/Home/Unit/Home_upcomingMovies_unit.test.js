@@ -3,7 +3,7 @@ import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
 
 import UpcomingMovies from '../../../Components/Home/UpcomingMovies';
-import { HOME_PAGE_UPCOMING_MOVIES } from '../../../mocks/fetch_mock_data';
+import { HOME_PAGE_UPCOMING_MOVIES } from '../../../mocks/fetchAPI_data/Home/UpcomingMovies';
 import store from '../../../utils/store';
 
 global.fetch = jest.fn(() => {

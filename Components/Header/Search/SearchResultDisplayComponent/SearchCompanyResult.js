@@ -16,7 +16,9 @@ function SearchCompanyResult(props) {
                 ></img>
             </div>
             <div className="w-[100%]">
-                <div className="font-medium">{name}</div>
+                <div className="font-medium" data-testid="companySearchedResults_name">
+                    {name}
+                </div>
             </div>
         </div>
     );

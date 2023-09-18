@@ -16,7 +16,9 @@ function SearchMovieResult(props) {
                 ></img>
             </div>
             <div>
-                <div className="font-medium">{title}</div>
+                <div className="font-medium" data-testid="movieSearchedResults_name">
+                    {title}
+                </div>
                 <div className="font-thin">{releaseDate}</div>
             </div>
         </div>

@@ -19,7 +19,9 @@ function SearchPersonResult(props) {
                     ></img>
                 </div>
                 <div className="w-[100%]">
-                    <div className="font-medium">{name}</div>
+                    <div className="font-medium" data-testid="personSearchedResults_name">
+                        {name}
+                    </div>
                     <div className="font-thin">{department}</div>
                 </div>
             </div>
