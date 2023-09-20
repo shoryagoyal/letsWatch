@@ -1,7 +1,7 @@
 import useFetch from '../../hooks/useFetch';
 import TvMoviesCardShimmer from '../Shimmers/TvMovieCardShimmer';
 import TvMovieCard from '../Helpers/TvMovieCard';
-import HomeSectionHeader from './HomeSectionHeadings';
+import SectionHeadingWithLink from '../Helpers/SectionHeadingWithLink';
 
 function UpcomingMovies() {
     const upcomingMovieData = useFetch(
@@ -11,7 +11,7 @@ function UpcomingMovies() {
     if (upcomingMovieData === null) {
         return (
             <div>
-                <HomeSectionHeader name="Upcoming movies" />
+                <SectionHeadingWithLink name="Upcoming movies" link="#" />
 
                 <div className="flex flex-wrap justify-center" data-testid="upcomingMovieShimmer">
                     {[...Array(12)].map((_, index) => (
@@ -23,7 +23,7 @@ function UpcomingMovies() {
     }
     return (
         <div>
-            <HomeSectionHeader name="Upcoming movies" />
+            <SectionHeadingWithLink name="Upcoming movies" link="#" />
             <div className="flex flex-wrap justify-center" data-testid="upcomingMovies">
                 {upcomingMovieData.results.map((movie) => (
                     <TvMovieCard

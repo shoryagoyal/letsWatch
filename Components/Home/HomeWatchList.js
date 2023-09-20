@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import TvMovieCard from '../Helpers/TvMovieCard';
-import HomeSectionHeadings from './HomeSectionHeadings';
+import SectionHeadingWithLink from '../Helpers/SectionHeadingWithLink';
 
 function HomeWatchList() {
     const watchListItem = useSelector((store) => store.watchList.watchListItem);
@@ -9,7 +9,7 @@ function HomeWatchList() {
     return (
         <div>
             <div>
-                <HomeSectionHeadings name="From your WatchList" />
+                <SectionHeadingWithLink name="From your WatchList" link="/user/watchList" />
             </div>
             {Object.keys(watchListItem).length === 0 ? (
                 <div className="text-white">
