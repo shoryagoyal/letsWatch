@@ -1,7 +1,8 @@
-import useFetch from '../../hooks/useFetch';
 import { useParams } from 'react-router-dom';
-import { imagePrefixApi } from '../../constants';
-import { Link } from 'react-router-dom';
+
+import useFetch from '../../hooks/useFetch';
+import TvMovieCard from '../Helpers/TvMovieCard';
+import '../../Styles.css';
 
 function TvSeriesSimilar() {
     const { tvSeriesId } = useParams();
@@ -10,32 +11,19 @@ function TvSeriesSimilar() {
     );
     console.log(similarSeriesData);
     return (
-        <div>
+        <div className="flex overflow-x-scroll no-scrollbar">
             {similarSeriesData === null ? (
                 <div>Data is loading</div>
             ) : (
                 similarSeriesData.results.map((similarSeries) => (
-                    <div
-                        key={similarSeries.id}
-                        style={{
-                            border: '1px solid black',
-                            margin: '20px',
-                        }}
-                    >
-                        <Link to={`/tv/${similarSeries.id}`}>
-                            <img
-                                src={
-                                    similarSeries.poster_path === null
-                                        ? 'https://www.sunsetlearning.com/wp-content/uploads/2019/09/User-Icon-Grey-300x300.png'
-                                        : `${imagePrefixApi}${similarSeries.poster_path}`
-                                }
-                                style={{
-                                    width: '40px',
-                                }}
-                            />
-                            <div>{similarSeries.name}</div>
-                        </Link>
-                    </div>
+                    <TvMovieCard
+                        name={similarSeries.name}
+                        image={similarSeries.poster_path}
+                        vote_average={similarSeries.vote_average}
+                        vote_count={similarSeries.vote_count}
+                        toLink={`/tv/${similarSeries.id}`}
+                        id={similarSeries.id}
+                    />
                 ))
             )}
         </div>
