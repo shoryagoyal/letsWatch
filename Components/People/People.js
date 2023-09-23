@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import CelebImages from './CelebImages';
 import CelebMovies from './CelebMovies';
 import CelebTvSeries from './CelebTvSeries';
+import CelebDetailsHeader from './CelebDetailsHeader';
 
 function People() {
     const { celebId } = useParams();
@@ -19,6 +20,7 @@ function People() {
     }, [celebId]);
     return (
         <div>
+            <CelebDetailsHeader />
             <CelebImages />
             <CelebMovies />
             <CelebTvSeries />

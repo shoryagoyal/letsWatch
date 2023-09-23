@@ -26,6 +26,7 @@ function TvSeriesSimilar() {
                             vote_count={similarSeries.vote_count}
                             toLink={`/tv/${similarSeries.id}`}
                             id={similarSeries.id}
+                            key={similarSeries.id}
                         />
                     ))
                 )}

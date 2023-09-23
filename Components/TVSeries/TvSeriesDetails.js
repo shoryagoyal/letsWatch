@@ -7,6 +7,7 @@ import useToGetImageSrc from '../../hooks/useToGetImageSrc';
 import Genres from '../Helpers/Genres';
 import { showStarRatingModal } from '../../utils/slices/starRatingModalShown';
 import RatingModal from '../Helpers/RatingModal';
+import DetailsPagePhotoVideoHeader from '../Helpers/DetailsPagePhotoVideoHeader';
 
 function TvSeriesDetails() {
     const { tvSeriesId } = useParams();
@@ -85,27 +86,7 @@ function TvSeriesDetails() {
                             </div>
                         </div>
                     </div>
-                    <div className="h-[55%] flex justify-between my-2">
-                        <div className="w-[20%] mr-[1%] border-slate-800 hover:brightness-[110%] hover:cursor-pointer">
-                            <img src={posterUrl} />
-                        </div>
-                        <div className="w-[58%]">
-                            <iframe
-                                className="w-[100%] h-[100%]"
-                                src={`https://www.youtube.com/embed/${details.videos.results[0].key}?si=vngVLDGuLvJXa4-r&autoplay=1`}
-                                title="YouTube video player"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            ></iframe>
-                        </div>
-                        <div className="w-[20%] ml-[1%] flex-col justify-between">
-                            <div className="h-[49%] bg-slate-600 flex items-center justify-center hover:brightness-[110%]">
-                                Videos
-                            </div>
-                            <div className="h-[49%] mt-[3%] bg-slate-600 flex items-center justify-center hover:brightness-[110%]">
-                                Images
-                            </div>
-                        </div>
-                    </div>
+                    <DetailsPagePhotoVideoHeader poster={posterUrl} videoKey={details.videos.results} />
                     <span>
                         <div>
                             <span>Name: </span>
