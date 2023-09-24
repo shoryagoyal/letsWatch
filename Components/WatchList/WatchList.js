@@ -8,7 +8,7 @@ function WatchList() {
 
     return (
         <div data-testid="watchListPage">
-            <div className="text-white text-2xl font-bold pt-10 pb-5">My watchList</div>
+            <div className="text-white text-2xl font-bold pt-10 pb-2">My watchList</div>
             {Object.keys(watchListItem).length === 0 ? (
                 <div className="text-white">
                     <div className="text-xl mb-5">Watch list is empty</div>
@@ -27,15 +27,17 @@ function WatchList() {
             ) : (
                 <div className="flex flex-wrap">
                     {Object.keys(watchListItem).map((item) => (
-                        <TvMovieCard
-                            key={item}
-                            image={watchListItem[item].image}
-                            vote_average={watchListItem[item].vote_average}
-                            vote_count={watchListItem[item].vote_count}
-                            name={watchListItem[item].name}
-                            toLink={watchListItem[item].toLink}
-                            id={item}
-                        />
+                        <div className="w-[15%] mr-[1%] mt-3">
+                            <TvMovieCard
+                                key={item}
+                                image={watchListItem[item].image}
+                                vote_average={watchListItem[item].vote_average}
+                                vote_count={watchListItem[item].vote_count}
+                                name={watchListItem[item].name}
+                                toLink={watchListItem[item].toLink}
+                                id={item}
+                            />
+                        </div>
                     ))}
                 </div>
             )}
