@@ -22,15 +22,13 @@ function TvSeriesImages() {
     return (
         <div>
             <SectionHeadingWithLink link={`/tv/${tvSeriesId}/allImages`} name="Photos" />
-            <div className="flex overflow-x-scroll no-scrollbar">
+            <div className="overflow-x-scroll whitespace-nowrap no-scrollbar">
                 {tvSeriesImagesData === ''
                     ? [...Array(5)].map((val, index) => <div key={index}>Shimmer</div>)
                     : tvSeriesImagesData.map((image) => (
-                          <img
-                              src={`${imagePrefixApi}${image.file_path}`}
-                              className="w-64 h-64 p-[1%]"
-                              key={image.file_path}
-                          />
+                          <div className="inline-block w-[24%] mr-[1%]" key={image.file_path}>
+                              <img src={`${imagePrefixApi}${image.file_path}`} />
+                          </div>
                       ))}
             </div>
         </div>

@@ -8,6 +8,7 @@ import Genres from '../Helpers/Genres';
 import { showStarRatingModal } from '../../utils/slices/starRatingModalShown';
 import RatingModal from '../Helpers/RatingModal';
 import DetailsPagePhotoVideoHeader from '../Helpers/DetailsPagePhotoVideoHeader';
+import { addToWatchList } from '../../utils/slices/watchListSlice';
 
 function TvSeriesDetails() {
     const { tvSeriesId } = useParams();
@@ -25,8 +26,7 @@ function TvSeriesDetails() {
             ) : (
                 <div>
                     {starRatingModalVisible && <RatingModal />}
-                    <div>Hy</div>
-                    <div className="flex justify-between text-white mt-3">
+                    <div className="flex justify-between text-white pt-3">
                         <div>
                             <div className="text-5xl">{details.name}</div>
                         </div>
@@ -87,47 +87,56 @@ function TvSeriesDetails() {
                         </div>
                     </div>
                     <DetailsPagePhotoVideoHeader poster={posterUrl} videoKey={details.videos.results} />
-                    <span>
-                        <div>
-                            <span>Name: </span>
-                            <span>{details && details.name}</span>
-                        </div>
-                        <div className="flex">
-                            {details != null &&
-                                details.genres.map((genre) => <Genres name={genre.name} key={genre.id} />)}
-                        </div>
-                        <div>
-                            <div>
-                                <div className="text-white border-b py-2">{details.overview}</div>
+                    <div className="flex mt-3">
+                        <div className="w-[65%]">
+                            <div className="flex">
+                                {details != null &&
+                                    details.genres.map((genre) => <Genres name={genre.name} key={genre.id} />)}
                             </div>
-                            <div className="flex py-2">
-                                <div className="text-white mr-3 font-bold">Creators</div>
-                                <div className="flex">
-                                    {details.created_by.map((creator, index) => (
-                                        <div key={creator.id}>
-                                            <Link
-                                                to={`/people/${creator.id}`}
-                                                className="text-blue-500 hover:underline"
-                                            >
-                                                {creator.name}
-                                            </Link>
-                                            {index !== details.created_by.length - 1 && (
-                                                <span className="text-white mx-2">&#183;</span>
-                                            )}
-                                        </div>
-                                    ))}
+                            <div>
+                                <div>
+                                    <div className="text-white border-b py-2">{details.overview}</div>
+                                </div>
+                                <div className="flex py-2">
+                                    <div className="text-white mr-3 font-bold">Creators</div>
+                                    <div className="flex">
+                                        {details.created_by.map((creator, index) => (
+                                            <div key={creator.id}>
+                                                <Link
+                                                    to={`/people/${creator.id}`}
+                                                    className="text-blue-500 hover:underline"
+                                                >
+                                                    {creator.name}
+                                                </Link>
+                                                {index !== details.created_by.length - 1 && (
+                                                    <span className="text-white mx-2">&#183;</span>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <span>Number of seasons: </span>
-                            <span>{details && details.number_of_seasons}</span>
+                        <div className="w-[35%] flex justify-center items-center">
+                            <button
+                                className="w-[80%] border rounded py-2 text-left pl-2 bg-slate-600 text-white hover:brightness-[120%]"
+                                onClick={() =>
+                                    dispatch(
+                                        addToWatchList({
+                                            id: tvSeriesId,
+                                            image: details.poster_path,
+                                            name: details.name,
+                                            toLink: `/tv/${tvSeriesId}`,
+                                            vote_average: details.vote_average,
+                                            vote_count: details.vote_count,
+                                        }),
+                                    )
+                                }
+                            >
+                                Add to WatchList
+                            </button>
                         </div>
-                        <div>
-                            <span>Number of episodes: </span>
-                            <span>{details && details.number_of_episodes}</span>
-                        </div>
-                    </span>
+                    </div>
                 </div>
             )}
         </div>

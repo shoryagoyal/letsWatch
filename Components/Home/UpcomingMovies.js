@@ -27,7 +27,7 @@ function UpcomingMovies() {
                     {upcomingMovieData === null ? (
                         <div data-testid="upcomingMovieShimmer">
                             {[...Array(12)].map((_, index) => (
-                                <div className="inline-block w-[15%] mr-[1%]">
+                                <div className="inline-block w-[15%] mr-[1%]" key={index}>
                                     <TvMoviesCardShimmer key={index} />
                                 </div>
                             ))}
@@ -35,7 +35,7 @@ function UpcomingMovies() {
                     ) : (
                         <div data-testid="upcomingMovies">
                             {upcomingMovieData.results.map((movie) => (
-                                <div className="inline-block w-[15%] mr-[1%]">
+                                <div className="inline-block w-[15%] mr-[1%]" key={movie.id}>
                                     <TvMovieCard
                                         image={movie.poster_path}
                                         id={movie.id}
