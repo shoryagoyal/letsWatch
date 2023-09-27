@@ -1,21 +1,13 @@
-import { useParams } from 'react-router-dom';
-
-import useFetch from '../../hooks/useFetch';
 import TvMovieCard from '../Helpers/TvMovieCard';
 import SectionHeadingWithoutLink from '../Helpers/SectionHeadingWithoutLink';
 import TvMoviesCardShimmer from '../Shimmers/TvMovieCardShimmer';
 
-function TvSeriesSimilar() {
-    const { tvSeriesId } = useParams();
-    const similarSeriesData = useFetch(
-        `https://api.themoviedb.org/3/tv/${tvSeriesId}/similar?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
-    );
-
+function TvSeriesSimilar(props) {
     return (
         <div>
             <SectionHeadingWithoutLink name="More like this"></SectionHeadingWithoutLink>
             <div className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5">
-                {similarSeriesData === null ? (
+                {props.tvSeriesSimilarSeries === null ? (
                     <div data-testid="upcomingMovieShimmer">
                         {[...Array(12)].map((_, index) => (
                             <div className="inline-block w-[15%] mr-[1%]" key={index}>
@@ -24,7 +16,7 @@ function TvSeriesSimilar() {
                         ))}
                     </div>
                 ) : (
-                    similarSeriesData.results.map((similarSeries) => (
+                    props.tvSeriesSimilarSeries.results.map((similarSeries) => (
                         <div className="inline-block w-[15%] mr-[1%]" key={similarSeries.id}>
                             <TvMovieCard
                                 name={similarSeries.name}

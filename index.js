@@ -13,6 +13,7 @@ import SignIn from './Components/Auth/SignIn';
 import CreateAccount from './Components/Auth/CreateAccount';
 import WatchList from './Components/WatchList/WatchList';
 import App from './App';
+import './Styles.css';
 
 require('dotenv').config();
 
