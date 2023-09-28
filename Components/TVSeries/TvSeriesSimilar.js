@@ -17,7 +17,10 @@ function TvSeriesSimilar(props) {
                     </div>
                 ) : (
                     props.tvSeriesSimilarSeries.results.map((similarSeries) => (
-                        <div className="inline-block w-[15%] mr-[1%]" key={similarSeries.id}>
+                        <div
+                            className="inline-block w-[46%] mr-[4%] sm:w-[27%] sm:mr-[2%] md:w-[22%] md:mr[1%] lg:w-[16%] lg:mr-[1%]"
+                            key={similarSeries.id}
+                        >
                             <TvMovieCard
                                 name={similarSeries.name}
                                 image={similarSeries.poster_path}

@@ -34,7 +34,7 @@ function TvSeries() {
     const images = data == null ? null : data[0];
     const casts = data == null ? null : data[1];
     const videos = data[2];
-    const similarSeries = data[3];
+    const similarSeries = data === null ? null : data[3];
 
     return (
         <div>
