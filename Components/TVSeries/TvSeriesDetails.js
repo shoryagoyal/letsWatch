@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
@@ -10,12 +10,13 @@ import RatingModal from '../Helpers/RatingModal';
 import DetailsPagePhotoVideoHeader from '../Helpers/DetailsPagePhotoVideoHeader';
 import { addToWatchList } from '../../utils/slices/watchListSlice';
 
-function TvSeriesDetails() {
-    const { tvSeriesId } = useParams();
+function TvSeriesDetails(props) {
+    const { seriesId } = props;
+
     const dispatch = useDispatch();
     const { id, name, starRatingModalVisible } = useSelector((state) => state.starRatingModalShown);
     const details = useFetch(
-        `https://api.themoviedb.org/3/tv/${tvSeriesId}?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&append_to_response=videos`,
+        `https://api.themoviedb.org/3/tv/${seriesId}?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}&append_to_response=videos`,
     );
     const posterUrl = useToGetImageSrc(details === null ? null : details.poster_path);
 
@@ -86,7 +87,13 @@ function TvSeriesDetails() {
                             </div>
                         </div>
                     </div>
-                    <DetailsPagePhotoVideoHeader poster={posterUrl} videoKey={details.videos.results} />
+                    <DetailsPagePhotoVideoHeader
+                        poster={posterUrl}
+                        videoKey={props.videoKeyVal}
+                        videosCount={props.videosCount}
+                        imagesCount={props.imagesCount}
+                        tvSeriesId={seriesId}
+                    />
                     <div className="flex mt-3">
                         <div className="w-[65%]">
                             <div className="flex">
@@ -123,10 +130,10 @@ function TvSeriesDetails() {
                                 onClick={() =>
                                     dispatch(
                                         addToWatchList({
-                                            id: tvSeriesId,
+                                            id: seriesId,
                                             image: details.poster_path,
                                             name: details.name,
-                                            toLink: `/tv/${tvSeriesId}`,
+                                            toLink: `/tv/${seriesId}`,
                                             vote_average: details.vote_average,
                                             vote_count: details.vote_count,
                                         }),
