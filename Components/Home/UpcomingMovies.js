@@ -1,29 +1,36 @@
+import { useState } from 'react';
+
 import useFetch from '../../hooks/useFetch';
 import TvMoviesCardShimmer from '../Shimmers/TvMovieCardShimmer';
 import TvMovieCard from '../Helpers/TvMovieCard';
 import SectionHeadingWithLink from '../Helpers/SectionHeadingWithLink';
+import ScrollBarNavigatorLeftButton from '../Helpers/ScrollBarNavigatorLeftButton';
+import ScrollBarNavigatorRightButton from '../Helpers/ScrollBarNavigatorRightButton';
+import useGetUniqueIdForScrollbar from '../../hooks/useGetUniqueIdForScrollbar';
 
 function UpcomingMovies() {
     const upcomingMovieData = useFetch(
         `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
     );
+    const [scrollPercentage, setScrollPercentage] = useState(0);
+    const scrollBarId = useGetUniqueIdForScrollbar();
 
     return (
         <div className="py-3">
             <SectionHeadingWithLink name="Upcoming movies" link="#" />
             <div className="flex">
-                <div className="text-white w-[4%] flex justify-center items-center">
-                    <button
-                        className="px-[39%] py-[50%] rounded z-10 bg-slate-600"
-                        onClick={() => {
-                            const scrollbar = document.querySelector('#scrollbar');
-                            scrollbar.scrollLeft -= 400;
-                        }}
-                    >
-                        &lt;
-                    </button>
-                </div>
-                <div className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] mx-[-4%]" id="scrollbar">
+                <ScrollBarNavigatorLeftButton
+                    scrollPercentageVal={scrollPercentage}
+                    element={document.querySelector(`#${scrollBarId}`)}
+                />
+                <div
+                    className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] mx-[-4%]"
+                    id={scrollBarId}
+                    onScroll={() => {
+                        const ele = document.querySelector(`#${scrollBarId}`);
+                        setScrollPercentage((ele.scrollLeft / (ele.scrollWidth - ele.clientWidth)) * 100);
+                    }}
+                >
                     {upcomingMovieData === null ? (
                         <div data-testid="upcomingMovieShimmer">
                             {[...Array(12)].map((_, index) => (
@@ -50,17 +57,10 @@ function UpcomingMovies() {
                         </div>
                     )}
                 </div>
-                <div className="text-white w-[4%] flex justify-center items-center">
-                    <button
-                        className="px-[39%] py-[50%] rounded z-10 bg-slate-600"
-                        onClick={() => {
-                            const scrollbar = document.querySelector('#scrollbar');
-                            scrollbar.scrollLeft += 400;
-                        }}
-                    >
-                        &gt;
-                    </button>
-                </div>
+                <ScrollBarNavigatorRightButton
+                    scrollPercentageVal={scrollPercentage}
+                    element={document.querySelector(`#${scrollBarId}`)}
+                />
             </div>
         </div>
     );

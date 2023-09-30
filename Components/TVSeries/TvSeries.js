@@ -52,7 +52,7 @@ function TvSeries() {
                 videosCount={videos === null ? null : videos.results.length}
                 videoKeyVal={videoKey}
                 imagesCount={imagesSize}
-                id={tvSeriesId}
+                seriesId={tvSeriesId}
             />
             <TvSeriesImages tvSeriesImages={images === null ? null : images.backdrops.slice(0, 20)} id={tvSeriesId} />
             <TvSeriesReview />
