@@ -20,7 +20,7 @@ function TvSeriesSimilar(props) {
                     element={document.querySelector(`#${scrollBarId}`)}
                 />
                 <div
-                    className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] mx-[-4%]"
+                    className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] md:mx-[-5%] mx-[-8%]"
                     id={scrollBarId}
                     onScroll={() => {
                         const ele = document.querySelector(`#${scrollBarId}`);

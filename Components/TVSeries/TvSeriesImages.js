@@ -20,7 +20,7 @@ function TvSeriesImages(props) {
                     element={document.querySelector(`#${scrollBarId}`)}
                 />
                 <div
-                    className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] mx-[-4%]"
+                    className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] md:mx-[-5%] mx-[-8%]"
                     id={scrollBarId}
                     onScroll={() => {
                         const ele = document.querySelector(`#${scrollBarId}`);
@@ -34,7 +34,7 @@ function TvSeriesImages(props) {
                               </div>
                           ))
                         : props.tvSeriesImages.map((image) => (
-                              <div className="inline-block w-[24%] mr-[1%]" key={image.file_path}>
+                              <div className="inline-block md:w-[24%] md:mr-[1%] w-[90%] mr-[5%]" key={image.file_path}>
                                   <img src={useToGetImageSrc(image.file_path)} />
                               </div>
                           ))}
