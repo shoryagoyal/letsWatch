@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import SectionHeadingWithLink from '../Helpers/SectionHeadingWithLink';
 import useToGetImageSrc from '../../hooks/useToGetImageSrc';
 import ImagesShimmer from '../Shimmers/ImagesShimmer';
@@ -8,24 +6,16 @@ import ScrollBarNavigatorRightButton from '../Helpers/ScrollBarNavigatorRightBut
 import useGetUniqueIdForScrollbar from '../../hooks/useGetUniqueIdForScrollbar';
 
 function TvSeriesImages(props) {
-    const [scrollPercentage, setScrollPercentage] = useState(0);
     const scrollBarId = useGetUniqueIdForScrollbar();
 
     return (
         <div>
             <SectionHeadingWithLink link={`/tv/${props.id}/allImages`} name="Photos" />
             <div className="flex">
-                <ScrollBarNavigatorLeftButton
-                    scrollPercentageVal={scrollPercentage}
-                    element={document.querySelector(`#${scrollBarId}`)}
-                />
+                <ScrollBarNavigatorLeftButton element={document.querySelector(`#${scrollBarId}`)} />
                 <div
                     className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] md:mx-[-5%] mx-[-8%]"
                     id={scrollBarId}
-                    onScroll={() => {
-                        const ele = document.querySelector(`#${scrollBarId}`);
-                        setScrollPercentage((ele.scrollLeft / (ele.scrollWidth - ele.clientWidth)) * 100);
-                    }}
                 >
                     {props.tvSeriesImages === null
                         ? [...Array(5)].map((_, index) => (
@@ -39,10 +29,7 @@ function TvSeriesImages(props) {
                               </div>
                           ))}
                 </div>
-                <ScrollBarNavigatorRightButton
-                    scrollPercentageVal={scrollPercentage}
-                    element={document.querySelector(`#${scrollBarId}`)}
-                />
+                <ScrollBarNavigatorRightButton element={document.querySelector(`#${scrollBarId}`)} />
             </div>
         </div>
     );

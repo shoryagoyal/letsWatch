@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import TvMovieCard from '../Helpers/TvMovieCard';
 import SectionHeadingWithoutLink from '../Helpers/SectionHeadingWithoutLink';
 import TvMoviesCardShimmer from '../Shimmers/TvMovieCardShimmer';
@@ -8,24 +6,16 @@ import ScrollBarNavigatorRightButton from '../Helpers/ScrollBarNavigatorRightBut
 import useGetUniqueIdForScrollbar from '../../hooks/useGetUniqueIdForScrollbar';
 
 function TvSeriesSimilar(props) {
-    const [scrollPercentage, setScrollPercentage] = useState(0);
     const scrollBarId = useGetUniqueIdForScrollbar();
 
     return (
         <div>
             <SectionHeadingWithoutLink name="More like this"></SectionHeadingWithoutLink>
             <div className="flex">
-                <ScrollBarNavigatorLeftButton
-                    scrollPercentageVal={scrollPercentage}
-                    element={document.querySelector(`#${scrollBarId}`)}
-                />
+                <ScrollBarNavigatorLeftButton element={document.querySelector(`#${scrollBarId}`)} />
                 <div
                     className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] md:mx-[-5%] mx-[-8%]"
                     id={scrollBarId}
-                    onScroll={() => {
-                        const ele = document.querySelector(`#${scrollBarId}`);
-                        setScrollPercentage((ele.scrollLeft / (ele.scrollWidth - ele.clientWidth)) * 100);
-                    }}
                 >
                     {props.tvSeriesSimilarSeries === null ? (
                         <div data-testid="upcomingMovieShimmer">
@@ -53,10 +43,7 @@ function TvSeriesSimilar(props) {
                         ))
                     )}
                 </div>
-                <ScrollBarNavigatorRightButton
-                    scrollPercentageVal={scrollPercentage}
-                    element={document.querySelector(`#${scrollBarId}`)}
-                />
+                <ScrollBarNavigatorRightButton element={document.querySelector(`#${scrollBarId}`)} />
             </div>
         </div>
     );

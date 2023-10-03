@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import useFetch from '../../hooks/useFetch';
 import TvMoviesCardShimmer from '../Shimmers/TvMovieCardShimmer';
 import TvMovieCard from '../Helpers/TvMovieCard';
@@ -12,24 +10,16 @@ function UpcomingMovies() {
     const upcomingMovieData = useFetch(
         `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
     );
-    const [scrollPercentage, setScrollPercentage] = useState(0);
     const scrollBarId = useGetUniqueIdForScrollbar();
 
     return (
         <div className="py-3">
             <SectionHeadingWithLink name="Upcoming movies" link="#" />
             <div className="flex">
-                <ScrollBarNavigatorLeftButton
-                    scrollPercentageVal={scrollPercentage}
-                    element={document.querySelector(`#${scrollBarId}`)}
-                />
+                <ScrollBarNavigatorLeftButton element={document.querySelector(`#${scrollBarId}`)} />
                 <div
                     className="overflow-x-scroll whitespace-nowrap no-scrollbar py-5 w-[100%] md:mx-[-5%] mx-[-8%]"
                     id={scrollBarId}
-                    onScroll={() => {
-                        const ele = document.querySelector(`#${scrollBarId}`);
-                        setScrollPercentage((ele.scrollLeft / (ele.scrollWidth - ele.clientWidth)) * 100);
-                    }}
                 >
                     {upcomingMovieData === null ? (
                         <div data-testid="upcomingMovieShimmer">
@@ -57,10 +47,7 @@ function UpcomingMovies() {
                         </div>
                     )}
                 </div>
-                <ScrollBarNavigatorRightButton
-                    scrollPercentageVal={scrollPercentage}
-                    element={document.querySelector(`#${scrollBarId}`)}
-                />
+                <ScrollBarNavigatorRightButton element={document.querySelector(`#${scrollBarId}`)} />
             </div>
         </div>
     );

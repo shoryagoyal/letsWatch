@@ -10,7 +10,6 @@ import useGetUniqueIdForScrollbar from '../../hooks/useGetUniqueIdForScrollbar';
 
 function TvSeriesCast(props) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [scrollPercentage, setScrollPercentage] = useState(0);
     const scrollBarId = useGetUniqueIdForScrollbar();
     useEffect(() => {
         function handleResize() {
@@ -24,23 +23,16 @@ function TvSeriesCast(props) {
             <div>
                 <SectionHeadingWithLink link={`/tv/${props.id}/allCast`} name="Top Cast" />
                 <div className="flex">
-                    <ScrollBarNavigatorLeftButton
-                        scrollPercentageVal={scrollPercentage}
-                        element={document.querySelector(`#${scrollBarId}`)}
-                    />
+                    <ScrollBarNavigatorLeftButton element={document.querySelector(`#${scrollBarId}`)} />
                     <div
-                        className="overflow-x-scroll whitespace-nowrap no-scrollbar w-[100%] mx-[-4%]"
+                        className="overflow-x-scroll whitespace-nowrap no-scrollbar w-[100%] md:mx-[-5%] mx-[-8%]"
                         id={scrollBarId}
-                        onScroll={() => {
-                            const ele = document.querySelector(`#${scrollBarId}`);
-                            setScrollPercentage((ele.scrollLeft / (ele.scrollWidth - ele.clientWidth)) * 100);
-                        }}
                     >
                         {props.tvSeriesCasts === null
                             ? Array(10)
                                   .fill('')
-                                  .map(() => (
-                                      <div className="inline-block mr-[3%] w-[40%]">
+                                  .map((_, index) => (
+                                      <div className="inline-block mr-[3%] w-[40%]" key={index}>
                                           <CastShimmer />
                                       </div>
                                   ))
@@ -74,10 +66,7 @@ function TvSeriesCast(props) {
                                   </div>
                               ))}
                     </div>
-                    <ScrollBarNavigatorRightButton
-                        scrollPercentageVal={scrollPercentage}
-                        element={document.querySelector(`#${scrollBarId}`)}
-                    />
+                    <ScrollBarNavigatorRightButton element={document.querySelector(`#${scrollBarId}`)} />
                 </div>
             </div>
         );

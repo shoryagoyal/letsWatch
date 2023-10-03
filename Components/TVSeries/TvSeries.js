@@ -30,7 +30,7 @@ function TvSeries() {
     useEffect(() => {
         getData();
     }, [tvSeriesId]);
-    if (data === null) return <div>Data is loading</div>;
+
     const images = data == null ? null : data[0];
     const imagesSize = images === null ? 0 : images.backdrops.length + images.posters.length + images.logos.length;
     const casts = data == null ? null : data[1];
@@ -55,9 +55,9 @@ function TvSeries() {
                 seriesId={tvSeriesId}
             />
             <TvSeriesImages tvSeriesImages={images === null ? null : images.backdrops.slice(0, 20)} id={tvSeriesId} />
-            <TvSeriesReview />
             <TvSeriesCast tvSeriesCasts={casts === null ? null : casts.cast.splice(0, 18)} id={tvSeriesId} />
             <TvSeriesSimilar tvSeriesSimilarSeries={similarSeries} />
+            <TvSeriesReview />
         </div>
     );
 }
