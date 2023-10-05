@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import TvSeriesImages from './TvSeriesImages';
 import TvSeriesReview from './TvSeriesReview';
 import TvSeriesCast from './TvSeriesCast';
-import TvSeriesSimilar from './TvSeriesSimilar';
 import TvSeriesDetails from './TvSeriesDetails';
+import DetailsPageImages from '../Helpers/DetailsPage/DetailsPageImages';
+import DetailsPageTvMovieCards from '../Helpers/DetailsPage/DetailsPageTvMovieCards';
 
 function TvSeries() {
     const { tvSeriesId } = useParams();
@@ -35,7 +35,7 @@ function TvSeries() {
     const imagesSize = images === null ? 0 : images.backdrops.length + images.posters.length + images.logos.length;
     const casts = data == null ? null : data[1];
     const videos = data === null ? null : data[2];
-    const similarSeries = data === null ? null : data[3];
+    const similarSeries = data === null ? null : data[3].results.slice(0, 20);
     let videoKey = null;
     if (videos !== null) {
         for (let video of videos.results) {
@@ -54,9 +54,12 @@ function TvSeries() {
                 imagesCount={imagesSize}
                 seriesId={tvSeriesId}
             />
-            <TvSeriesImages tvSeriesImages={images === null ? null : images.backdrops.slice(0, 20)} id={tvSeriesId} />
+            <DetailsPageImages
+                images={images === null ? null : images.backdrops.slice(0, 20)}
+                linkToAllImagesPage={`/tv/${tvSeriesId}/allImages`}
+            />
             <TvSeriesCast tvSeriesCasts={casts === null ? null : casts.cast.splice(0, 18)} id={tvSeriesId} />
-            <TvSeriesSimilar tvSeriesSimilarSeries={similarSeries} />
+            <DetailsPageTvMovieCards toLinkPrefix="tv" heading="More like this" data={similarSeries} />
             <TvSeriesReview />
         </div>
     );

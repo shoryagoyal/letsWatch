@@ -1,29 +1,51 @@
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import CelebImages from './CelebImages';
-import CelebMovies from './CelebMovies';
-import CelebTvSeries from './CelebTvSeries';
+import { useEffect, useState } from 'react';
+
 import CelebDetailsHeader from './CelebDetailsHeader';
+import DetailsPageImages from '../Helpers/DetailsPage/DetailsPageImages';
+import DetailsPageTvMovieCards from '../Helpers/DetailsPage/DetailsPageTvMovieCards';
 
 function People() {
     const { celebId } = useParams();
     console.log('rendering taking place');
-    async function data() {
-        const data = await fetch(
-            `https://api.themoviedb.org/3/person/${celebId}/images?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
-        );
-        const json = await data.json();
-        console.log(json);
+    const [data, setData] = useState(null);
+
+    async function getData() {
+        const responses = await Promise.all([
+            fetch(
+                `https://api.themoviedb.org/3/person/${celebId}/images?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
+            ),
+            fetch(
+                `https://api.themoviedb.org/3/person/${celebId}/movie_credits?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
+            ),
+            fetch(
+                `https://api.themoviedb.org/3/person/${celebId}/tv_credits?api_key=${process.env.REACT_APP_MOVIE_DB_API_KEY}`,
+            ),
+        ]).then((results) => Promise.all(results.map((r) => r.json())));
+        setData(responses);
     }
     useEffect(() => {
-        data();
+        getData();
     }, [celebId]);
+
+    const images = data == null ? null : data[0];
+    const movies = data == null ? null : [...data[1].cast, ...data[1].crew];
+    const tvSeries = data == null ? null : [...data[2].cast, ...data[2].crew];
+
     return (
         <div>
             <CelebDetailsHeader />
-            <CelebImages />
-            <CelebMovies />
-            <CelebTvSeries />
+            <DetailsPageImages images={images === null ? null : images.profiles} linkToAllImagesPage={'#'} />
+            <DetailsPageTvMovieCards
+                heading={'Movies'}
+                data={movies == null ? null : movies.splice(0, 20)}
+                toLinkPrefix="movie"
+            />
+            <DetailsPageTvMovieCards
+                heading={'Tv Series'}
+                data={movies == null ? null : tvSeries.splice(0, 20)}
+                toLinkPrefix="tv"
+            />
         </div>
     );
 }
