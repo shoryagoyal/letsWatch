@@ -23,16 +23,27 @@ function TvSeriesDiscover() {
         return (
             <div className="flex flex-wrap justify-center">
                 {[...Array(12)].map((_, index) => (
-                    <TvMoviesCardShimmer key={index} />
+                    <div
+                        className="xl:w-[15%] xl:mx-[0.5%]  md:w-[23%] md:mx-[0.8%] md:my-[1%] my-[5%] w-[48%] mx-[1%]"
+                        key={index}
+                    >
+                        <TvMoviesCardShimmer />
+                    </div>
                 ))}
             </div>
         );
     }
     return (
         <div>
-            <div className="absolute top-0 right-0">
-                <label>Sort by</label>
-                <select name="tvSort" id="tvSort" onChange={changeSortByHandler} value={sortBy}>
+            <div className="flex justify-center items-center py-4 text-lg">
+                <label className="text-white mx-5">Sort by</label>
+                <select
+                    name="tvSort"
+                    id="tvSort"
+                    onChange={changeSortByHandler}
+                    value={sortBy}
+                    className="px-4 py-2 rounded"
+                >
                     <option value="popularity.asc">Popularity ascending</option>
                     <option value="popularity.desc">Popularity descending</option>
                     <option value="vote_average.asc">Vote average ascending</option>
@@ -44,15 +55,19 @@ function TvSeriesDiscover() {
             <div>
                 <div className="flex flex-wrap justify-center">
                     {tvSeriesList.results.map((tvSeries) => (
-                        <TvMovieCard
-                            image={tvSeries.poster_path}
-                            id={tvSeries.id}
-                            vote_average={tvSeries.vote_average}
-                            vote_count={tvSeries.vote_count}
-                            name={tvSeries.name}
+                        <div
+                            className="xl:w-[15%] xl:mx-[0.5%]  md:w-[23%] md:mx-[0.8%] md:my-[1%] my-[5%] w-[48%] mx-[1%]"
                             key={tvSeries.id}
-                            toLink={'/tv/' + tvSeries.id}
-                        />
+                        >
+                            <TvMovieCard
+                                image={tvSeries.poster_path}
+                                id={tvSeries.id}
+                                vote_average={tvSeries.vote_average}
+                                vote_count={tvSeries.vote_count}
+                                name={tvSeries.name}
+                                toLink={'/tv/' + tvSeries.id}
+                            />
+                        </div>
                     ))}
                 </div>
             </div>
