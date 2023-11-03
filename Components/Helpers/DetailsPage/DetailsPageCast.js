@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import SectionHeadingWithLink from '../Helpers/SectionHeadingWithLink';
-import useToGetImageSrc from '../../hooks/useToGetImageSrc';
-import CastShimmer from '../Shimmers/CastShimmer';
-import ScrollBarNavigatorLeftButton from '../Helpers/ScrollBarNavigatorLeftButton';
-import ScrollBarNavigatorRightButton from '../Helpers/ScrollBarNavigatorRightButton';
-import useGetUniqueIdForScrollbar from '../../hooks/useGetUniqueIdForScrollbar';
+import SectionHeadingWithLink from '../SectionHeadingWithLink';
+import useToGetImageSrc from '../../../hooks/useToGetImageSrc';
+import CastShimmer from '../../Shimmers/CastShimmer';
+import ScrollBarNavigatorLeftButton from '../ScrollBarNavigatorLeftButton';
+import ScrollBarNavigatorRightButton from '../ScrollBarNavigatorRightButton';
+import useGetUniqueIdForScrollbar from '../../../hooks/useGetUniqueIdForScrollbar';
 
-function TvSeriesCast(props) {
+function DetailsPageCast(props) {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const scrollBarId = useGetUniqueIdForScrollbar();
     useEffect(() => {
@@ -21,14 +21,14 @@ function TvSeriesCast(props) {
     if (windowWidth < 768) {
         return (
             <div>
-                <SectionHeadingWithLink link={`/tv/${props.id}/allCast`} name="Top Cast" />
+                <SectionHeadingWithLink link={props.linkToAllCastPage} name="Top Cast" />
                 <div className="flex">
                     <ScrollBarNavigatorLeftButton element={document.querySelector(`#${scrollBarId}`)} />
                     <div
                         className="overflow-x-scroll whitespace-nowrap no-scrollbar w-[100%] md:mx-[-5%] mx-[-8%]"
                         id={scrollBarId}
                     >
-                        {props.tvSeriesCasts === null
+                        {props.casts === null
                             ? Array(10)
                                   .fill('')
                                   .map((_, index) => (
@@ -36,7 +36,7 @@ function TvSeriesCast(props) {
                                           <CastShimmer />
                                       </div>
                                   ))
-                            : props.tvSeriesCasts.map((castData) => (
+                            : props.casts.map((castData) => (
                                   <div className="inline-block w-[40%] mr-[3%]" key={castData.id}>
                                       <div className="inline-block w-[100%] mb-2 whitespace-normal">
                                           <div className="w-[100%] flex justify-center items-center mb-2">
@@ -73,9 +73,9 @@ function TvSeriesCast(props) {
     }
     return (
         <div>
-            <SectionHeadingWithLink link={`/tv/${props.id}/allCast`} name="Top Cast" />
+            <SectionHeadingWithLink link={props.linkToAllCastPage} name="Top Cast" />
             <div className="flex flex-wrap justify-between">
-                {props.tvSeriesCasts === null
+                {props.casts === null
                     ? Array(10)
                           .fill('')
                           .map(() => (
@@ -83,7 +83,7 @@ function TvSeriesCast(props) {
                                   <CastShimmer />
                               </div>
                           ))
-                    : props.tvSeriesCasts.map((castData) => (
+                    : props.casts.map((castData) => (
                           <div className="w-[49%] mr-[1%] h-30 my-2" key={castData.id}>
                               <div className="flex w-[100%] mb-2 whitespace-normal">
                                   <div className="flex justify-center items-center w-[30%] mr-[2%] lg:w-[20%] ">
@@ -116,4 +116,5 @@ function TvSeriesCast(props) {
         </div>
     );
 }
-export default TvSeriesCast;
+
+export default DetailsPageCast;

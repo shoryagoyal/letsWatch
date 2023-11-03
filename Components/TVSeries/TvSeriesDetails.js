@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 import useFetch from '../../hooks/useFetch';
 import useToGetImageSrc from '../../hooks/useToGetImageSrc';
-import Genres from '../Helpers/Genres';
 import { showStarRatingModal } from '../../utils/slices/starRatingModalShown';
 import RatingModal from '../Helpers/RatingModal';
 import DetailsPagePhotoVideoHeader from '../Helpers/DetailsPagePhotoVideoHeader';
@@ -98,7 +97,14 @@ function TvSeriesDetails(props) {
                         <div className="w-[65%]">
                             <div className="flex">
                                 {details != null &&
-                                    details.genres.map((genre) => <Genres name={genre.name} key={genre.id} />)}
+                                    details.genres.map((genre) => (
+                                        <div
+                                            className="border text-white rounded-full px-2 py-1 mr-2 hover:cursor-pointer hover:bg-slate-700"
+                                            key={genre.id}
+                                        >
+                                            {genre.name}
+                                        </div>
+                                    ))}
                             </div>
                             <div>
                                 <div>
