@@ -53,13 +53,19 @@ function DetailsPageCast(props) {
                                                   <Link to={`/people/${castData.id}`}>
                                                       <div className="font-bold text-white">{castData.name}</div>
                                                   </Link>
-                                                  <div className="text-slate-400 md:h-30">
-                                                      <div>{castData.roles[0].character}</div>
-                                                      <div>
-                                                          {castData.roles[0].episode_count}{' '}
-                                                          {castData.roles[0].episode_count > 1 ? 'episodes' : 'episode'}
+                                                  {castData.hasOwnProperty('roles') ? (
+                                                      <div className="text-slate-400 md:h-30">
+                                                          <div>{castData.roles[0].character}</div>
+                                                          <div>
+                                                              {castData.roles[0].episode_count}{' '}
+                                                              {castData.roles[0].episode_count > 1
+                                                                  ? 'episodes'
+                                                                  : 'episode'}
+                                                          </div>
                                                       </div>
-                                                  </div>
+                                                  ) : (
+                                                      <div className="text-slate-400 md:h-30">{castData.character}</div>
+                                                  )}
                                               </div>
                                           </div>
                                       </div>
@@ -101,13 +107,17 @@ function DetailsPageCast(props) {
                                               {castData.name}
                                           </div>
                                       </Link>
-                                      <div className="text-slate-400 h-30">
-                                          <div>{castData.roles[0].character}</div>
-                                          <div>
-                                              {castData.roles[0].episode_count}{' '}
-                                              {castData.roles[0].episode_count > 1 ? 'episodes' : 'episode'}
+                                      {castData.hasOwnProperty('roles') ? (
+                                          <div className="text-slate-400 h-30">
+                                              <div>{castData.roles[0].character}</div>
+                                              <div>
+                                                  {castData.roles[0].episode_count}{' '}
+                                                  {castData.roles[0].episode_count > 1 ? 'episodes' : 'episode'}
+                                              </div>
                                           </div>
-                                      </div>
+                                      ) : (
+                                          <div className="text-slate-400 h-30">{castData.character}</div>
+                                      )}
                                   </div>
                               </div>
                           </div>
